@@ -1,10 +1,34 @@
 // Define variables for your color scheme
 
 // For example:
-$red: #EE5F5B;
-$blue: #469AE0;
-$yellow: #FDB631;
-$orange: #E67E22;
-$green: #32B796;
-$gray: #000000;
+$blue:        #0096b0;
+$blue-vt:     rgba(0,150,179,0.2);
+$green:       #00E4A3;
+$green-lt:     rgba(0, 228, 169, 0.75);
+$green-t:     rgba(0, 228, 169, 0.5);
+$light-green: #2ecc71;
+$orange:      #FFBD4B;
+$yellow:      #FEF68E;
+$corn-yellow: #E4CC43;
+$turquoise:   #41C8C4;
+$turquoise-lt: rgba(65,200,196,0.75);
+$turquoise-t: rgba(65,200,196,0.5);
+$turquoise-vt: rgba(65,200,196,0.2);
+$rose:        #E62C76;
+$rose-lt:      rgba(230,44,118,0.75);
+$rose-t:      rgba(230,44,118,0.5);
+$rose-vt:     rgba(230,44,118,0.2);
+$red:         #F31542;
+$pro-red:     #FF706E;
+$pro-red-t:   rgba(255, 112, 110, 0.8);
+$black:       rgba(0,0,0,1);
+$lila:        #B695C0;
+$purple:      #474A82;
+$main-linear: linear-gradient(-225deg, rgba(0,150,179,0.6) 20%, rgba(80,207,140,0.6) 80%);
+$hard-linear: linear-gradient(-225deg, rgb(0,150,179) 20%, rgb(80,207,140) 80%);
+$form-linear: linear-gradient(-225deg, rgba(247, 183, 51, 0.6) 0%, rgba(252, 74, 26, 0.6) 80%),linear-gradient(#D2D2D2,#D2D2D2);
+$sub-linear: linear-gradient(-195deg, rgba(0,150,179,0.3) 0%, rgba(0,150,179,0.15) 41%, rgba(80,207,140,0.3) 100%);
 $light-gray: #F4F4F4;
+$ice-white: #FAFAFA;
+$heavy-gray: #999;
+$blue-messenger: #0086F7;

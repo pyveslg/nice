@@ -1,0 +1,53 @@
+.title {
+  background-color: white;
+  padding: 10px;
+  h1 {
+    font-size: 20px;
+    margin: 0px;
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+h3 {
+  font-size: 16px;
+  color: $turquoise-lt;
+  border-bottom: 2px solid $blue-vt;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.main-linearize {
+  background: $main-linear;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rosify {
+  -webkit-text-fill-color: $rose;
+}
+
+.new_contract {
+  margin-top: 60px;
+  label {
+    font-size: 14px;
+    color: rgba(0,0,0,0.3);
+  }
+  .form-control {
+    font-size: 14px;
+  }
+  .btn {
+    position: absolute;
+    right: 15px;
+  }
+}
+
+body {
+  background-image: url("https://res.cloudinary.com/pywagon/image/upload/v1534510363/image_gi7jyj.png");
+  background-repeat: no-repeat;
+  font-size: 14px;
+}
+

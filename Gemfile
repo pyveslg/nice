@@ -17,6 +17,11 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
+## PDF GENERATION
+gem 'wicked_pdf', '~> 1.1.0'
+gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
+gem 'humanize'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
