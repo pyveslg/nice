@@ -38,6 +38,7 @@ class Contract < ApplicationRecord
 
   TARGET = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2", "B2.1", "B2.2", "C1.1", "C1.2"]
 
+
   def hours_by_sessions
   end
 
@@ -56,11 +57,16 @@ class Contract < ApplicationRecord
   def number_of_weeks
   end
 
+  def self.contracts_count(date, contract)
+    contracts = Contract.all.where("sign_date = ?", date)
+    contracts.empty? ? 1 : contracts.find_index(contract) + 1
+  end
+
   def contract_number
     if client_type == 0 || client_type.nil?
-      "NOV-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{id}"
+      "NOV-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
     else
-      "NOV-#{Programmes::PROGRAMME[programme][:code].upcase}-#{company[0,3].upcase}#{sign_date.strftime("%Y%m%d")}-0000#{id}"
+      "NOV-#{Programmes::PROGRAMME[programme][:code].upcase}-#{company[0,3].upcase}#{sign_date.strftime("%Y%m%d")}-0000#{Contract.contracts_count(sign_date, self)}"
     end
   end
 
