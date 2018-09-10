@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get "frenchbooster", to: "pages#frenchbooster"
   get "cpi", to: "pages#cpi"
-  resources :contracts, only: [:index, :new, :create, :show, :update]  do
+  resources :contracts  do
     member do
       get 'download'
       get 'fbp_contract'

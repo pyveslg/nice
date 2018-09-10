@@ -19,13 +19,13 @@ module Programmes
       {
         id: 1,
         title: "Online 1-on-1 French Classes",
-        code: "CPO"
+        code: "CPIO"
       }
     ]
 
     FBP = [
       {
-        id: 0,
+        id: 2,
         title: "FrenchBooster Programme - Fall 2018",
         code: "FBP",
         start_from: Date.new(2018,9,22),
