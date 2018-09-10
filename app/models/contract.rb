@@ -57,7 +57,7 @@ class Contract < ApplicationRecord
   end
 
   def contract_number
-    if client_type == 0
+    if client_type == 0 || client_type.nil?
       "NOV-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{id}"
     else
       "NOV-#{Programmes::PROGRAMME[programme][:code].upcase}-#{company[0,3].upcase}#{sign_date.strftime("%Y%m%d")}-0000#{id}"

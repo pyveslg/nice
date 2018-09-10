@@ -1,3 +1,3 @@
 module Teachers
-  TEACHERS = ["Fabienne DEFAUX"]
+  TEACHERS = ["Fabienne DEFAUX", "Claire RICHARD"]
 end

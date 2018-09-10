@@ -4,4 +4,7 @@ class PagesController < ApplicationController
 
   def frenchbooster
   end
+
+  def cpi
+  end
 end

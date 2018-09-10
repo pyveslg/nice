@@ -3,10 +3,10 @@
   <li><b>100%</b> du montant à la commande, facturés le <b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 1 * @contract.total_amount %>€</b></li>
 <% elsif @contract.programme_duration < 95 %>
   <li><b>30%</b> du montant à la commande, facturés le <b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.3 * @contract.total_amount %>€</b></li>
-  <li><b>70%</b> du montant, facturés le <b><%= l(@contract.calcul_payment_date(@contract.first_payment_date, 0.3), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.7 * @contract.total_amount %>€</b></li>
+  <li><b>70%</b> du montant, facturés le &nbsp<b><%= l(@contract.calcul_payment_date(@contract.first_payment_date, 0.3), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.7 * @contract.total_amount %>€</b></li>
 <% else %>
   <li><b>30%</b> du montant à la commande, facturés le <b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.3 * @contract.total_amount %>€</b></li>
-  <li><b>40%</b> du montant total, facturés le <b><%= l(@contract.calcul_payment_date(@contract.first_payment_date, 0.3), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.4 * @contract.total_amount %>€</b></li>
-  <li><b>30%</b> du montant total, facturés le <b><%= l(@contract.calcul_payment_date(@contract.calcul_payment_date(@contract.first_payment_date, 0.3), 0.4), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.3 * @contract.total_amount %>€</b></li>
+  <li><b>40%</b> du montant total, facturés le &nbsp<b><%= l(@contract.calcul_payment_date(@contract.first_payment_date, 0.3), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.4 * @contract.total_amount %>€</b></li>
+  <li><b>30%</b> du montant total, facturés le &nbsp<b><%= l(@contract.calcul_payment_date(@contract.calcul_payment_date(@contract.first_payment_date, 0.3), 0.4), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 0.3 * @contract.total_amount %>€</b></li>
 <% end %>
 </ul>

@@ -20,16 +20,6 @@ module Programmes
         id: 1,
         title: "Online 1-on-1 French Classes",
         code: "CPO"
-      },
-      {
-        id: 2,
-        title: "X-on-1 French Classes",
-        code: "CMG"
-      },
-      {
-        id: 3,
-        title: "FrenchBooster Programme",
-        code: "FBP"
       }
     ]
 

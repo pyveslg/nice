@@ -1,6 +1,10 @@
 class ContractsController < ApplicationController
-  before_action :set_contract, only: [:update, :show, :download, :fbp_contract]
+  before_action :set_contract, only: [:update, :show, :edit, :download, :fbp_contract]
   layout "pdf", only: [ :show ]
+
+  def index
+    @contracts = Contract.all
+  end
 
   def new
     @contract = Contract.new
@@ -8,6 +12,7 @@ class ContractsController < ApplicationController
 
   def create
     @contract = Contract.new(contract_params)
+    @contract.programme = Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
     if source_params[:source] != "frenchbooster"
       @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
       @contract.sessions = set_sessions
@@ -28,8 +33,10 @@ class ContractsController < ApplicationController
     end
   end
 
-  def update
+  def edit
+  end
 
+  def update
   end
 
   def fbp_contract

@@ -18,17 +18,17 @@ module Fees
     },
     {
       id: 3,
-      title: "[CPO]PAY AS YOU GO - 55€",
+      title: "[CPIO] PAY AS YOU GO - 55€",
       value: 55
     },
     {
       id: 4,
-      title: "[CPO]PACK 30H - 48€",
+      title: "[CPIO] PACK 30H - 48€",
       value: 48
     },
     {
       id: 5,
-      title: "[CMG]PAY AS YOU GO - 30€",
+      title: "[CMG] PAY AS YOU GO - 30€",
       value: 30
     },
     {
@@ -45,11 +45,6 @@ module Fees
       id: 8,
       title: "[CPI-E] PACK 50H - 65€",
       value: 65
-    },
-    {
-      id: 9,
-      title: "FULL PRICE - FBP - 659€",
-      value: 659
     },
     {
       id: 10,

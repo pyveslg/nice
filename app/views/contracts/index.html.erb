@@ -1,0 +1,8 @@
+<h1>Generated Contracts</h1>
+<h3>Please, select the contract of interest</h3>
+
+<ul>
+  <% @contracts.each_with_index do |contract, index| %>
+    <li>[<%= index + 1 %>] <%= link_to contract.contract_number, contract_path(contract, format: :pdf), target: "_blank" %> | <%= contract.first_name %> <%= contract.last_name %> | <%= contract.set_programme_title %> - created at <%= contract.created_at %></li>
+  <% end %>
+</ul>

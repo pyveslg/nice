@@ -5,7 +5,7 @@
         <%= f.input :programme, as: :select, collection: Programmes::PROGRAMME.map{|prog| prog[:title]} %>
         <%= f.input :client_type, as: :select, collection: Contract::CLIENT_TYPE.map{|client| client[:title]} %>
         <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]} %>
-
+        <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS %>
         <div class="col-xs-6">
           <%= f.input :start_from %>
         </div>

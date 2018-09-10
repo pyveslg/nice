@@ -8,14 +8,14 @@ import 'select2';
 import 'select2/dist/css/select2.css';
 
 
-const datepicker = document.querySelector(".datepicker");
-if (datepicker) {
+const datepickers = document.querySelectorAll(".datepicker");
+datepickers.forEach((datepicker) => {
   flatpickr(datepicker, {
     // plugins: [new confirmDatePlugin({})],
     locale: "fr",
     altInput: true
   })
-}
+})
 
 const selectable = document.querySelectorAll(".select2");
 selectable.forEach((item) => {
