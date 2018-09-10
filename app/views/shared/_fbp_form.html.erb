@@ -1,0 +1,32 @@
+<div class="title">
+  <h1 class="main-linearize">FrenchBooster Programme | <span class="rosify">Generate Contract</span></h1>
+</div>
+<div class="container">
+  <div class="col-xs-12 col-sm-6">
+    <%= simple_form_for (contract) do |f| %>
+      <div class="about-programme">
+        <h3>About the programme</h3>
+        <%= f.input :programme, as: :select, collection: Programmes::FBP.map{|prog| prog[:title]}, input_html: {class: "select2"} %>
+        <%= f.input :hourly_rate, as: :select, collection: Fees::FBP_FEES.map{|fee| fee[:title]}, input_html: {class: "select2"} %>
+      </div>
+      <div class="contact-details">
+        <h3>About the contractor</h3>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :tel %>
+        <%= f.input :email %>
+        <%= f.input :address %>
+        <%= f.input :zipcode %>
+        <%= f.input :city %>
+      </div>
+      <div class="about-contract">
+        <h3>Signature Date</h3>
+        <%= f.input :sign_date, as: :string, input_html: {class: "datepicker"}, label: false %>
+      </div>
+      <%= simple_fields_for :source do |v| %>
+        <%= v.hidden_field :source, value: params[:action] %>
+      <% end %>
+      <%= f.submit "Generate Contract", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

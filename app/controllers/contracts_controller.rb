@@ -24,9 +24,9 @@ class ContractsController < ApplicationController
     end
     if @contract.save
       if source_params[:source] == "frenchbooster"
-        redirect_to fbp_contract_contract_path(@contract, format: :pdf)
+        redirect_to fbp_contract_contract_path(@contract)
       else
-        redirect_to contract_path(@contract, format: :pdf)
+        redirect_to contract_path(@contract)
       end
     else
       render :new
@@ -37,6 +37,26 @@ class ContractsController < ApplicationController
   end
 
   def update
+    @contract.update(contract_params)
+    @contract.programme = Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
+    if source_params[:source] != "frenchbooster"
+      @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+      @contract.sessions = set_sessions
+      @contract.frequency = set_frequency
+    else
+     @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+     @contract.start_from = Programmes::FBP[@contract.programme][:start_from]
+     @contract.end_at = Programmes::FBP[@contract.programme][:end_at]
+    end
+    if @contract.save
+      if source_params[:source] == "frenchbooster"
+        redirect_to fbp_contract_contract_path(@contract)
+      else
+        redirect_to contract_path(@contract)
+      end
+    else
+      render :edit
+    end
   end
 
   def fbp_contract

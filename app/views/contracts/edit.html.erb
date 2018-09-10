@@ -1,0 +1,6 @@
+<% if @contract.programme == 3 %>
+  <%= render "shared/fbp_form", contract: @contract %>
+<% end %>
+<% if @contract.programme !=3 %>
+  <%= render "shared/cpi_form", contract: @contract%>
+<% end %>
