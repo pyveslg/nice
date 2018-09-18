@@ -28,8 +28,10 @@ module Programmes
         id: 2,
         title: "FrenchBooster Programme - Fall 2018",
         code: "FBP",
-        start_from: Date.new(2018,9,22),
-        end_at: Date.new(2018,12,8)
+        start_from: Date.new(2018,9,29),
+        end_at: Date.new(2018,12,8),
+        second_payment: Date.new(2018,10,20),
+        third_payment: Date.new(2018,11,20)
       }
     ]
 

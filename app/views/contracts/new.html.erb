@@ -1,36 +1,5 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <%= simple_form_for (@contract) do |f| %>
-        <%= f.input :programme, as: :select, collection: Programmes::PROGRAMME.map{|prog| prog[:title]} %>
-        <%= f.input :client_type, as: :select, collection: Contract::CLIENT_TYPE.map{|client| client[:title]} %>
-        <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]} %>
-        <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS %>
-        <div class="col-xs-6">
-          <%= f.input :start_from %>
-        </div>
-        <div class="col-xs-6">
-          <%= f.input :end_at %>
-        </div>
-        <%= f.input :target, as: :select, collection: Contract::TARGET %>
-        <%= f.input :hours_by_sessions, as: :select, collection: [1, 1.5, 2, 2.5, 3] %>
-        <%= f.input :number_of_sessions, as: :select, collection: 1..50 %>
-        <%= f.input :hours_by_sessions_2, as: :select, collection: [1, 1.5, 2, 2.5, 3] %>
-        <%= f.input :number_of_sessions_2, as: :select, collection: 1..50 %>
-        <%= f.input :number_of_classes, as: :select, collection: 1..12 %>
-        <%= f.input :number_of_weeks, as: :select, collection: 1..6 %>
-        <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS %>
-        <%= f.input :sign_date %>
-        <%= f.input :first_name %>
-        <%= f.input :last_name %>
-        <%= f.input :tel %>
-        <%= f.input :email %>
-        <%= f.input :address %>
-        <%= f.input :zipcode %>
-        <%= f.input :city %>
-        <%= f.submit "Generate Contract" %>
-    <% end %>
-    </div>
-  </div>
-</div>
-
+<% if !params[:code].nil? && params[:code] == "FBP" %>
+  <%= render "shared/fbp_form" %>
+<% else %>
+  <%= render "shared/cpi_form" %>
+<% end %>

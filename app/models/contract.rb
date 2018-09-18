@@ -63,15 +63,23 @@ class Contract < ApplicationRecord
   end
 
   def contract_number
-    if client_type == 0 || client_type.nil?
-      "NOV-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
+    if code == "FBP"
+      "NOV-#{code}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
     else
-      "NOV-#{Programmes::PROGRAMME[programme][:code].upcase}-#{company[0,3].upcase}#{sign_date.strftime("%Y%m%d")}-0000#{Contract.contracts_count(sign_date, self)}"
+      if client_type == 0 || client_type.nil?
+        "NOV-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
+      else
+        "NOV-#{Programmes::PROGRAMME[programme][:code].upcase}-#{company[0,3].upcase}#{sign_date.strftime("%Y%m%d")}-0000#{Contract.contracts_count(sign_date, self)}"
+      end
     end
   end
 
   def set_programme_title
-    Programmes::PROGRAMME[programme][:title].upcase
+    if code == "FBP"
+      Programmes::FBP[programme - Programmes::FBP[0][:id]][:title].upcase
+    else
+      Programmes::PROGRAMME[programme][:title].upcase
+    end
   end
 
   def duration
@@ -98,12 +106,16 @@ class Contract < ApplicationRecord
   end
 
   def first_payment_date
-    payment_date = sign_date + 14
-    if payment_date.wday == 6 || payment_date.wday == 7
-      if (payment_date + 1).wday == 7
-        payment_date = sign_date + 16
-      else
-        payment_date = sign_date + 15
+    if sign_date + 14 >= start_from
+      payment_date = sign_date
+    else
+      payment_date = sign_date + 14
+      if payment_date.wday == 6 || payment_date.wday == 7
+        if (payment_date + 1).wday == 7
+          payment_date = sign_date + 16
+        else
+          payment_date = sign_date + 15
+        end
       end
     end
     return payment_date
@@ -131,6 +143,10 @@ class Contract < ApplicationRecord
       total_number_sessions.push((session[0].to_i))
     end
     hours.fdiv(total_number_sessions.inject(0){|sum, x| sum + x.to_i})
+  end
+
+  def access_fbp_hash
+    Programmes::FBP[programme - Programmes::FBP[0][:id]]
   end
 
 end

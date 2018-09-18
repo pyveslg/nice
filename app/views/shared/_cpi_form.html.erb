@@ -3,7 +3,7 @@
 </div>
 <div class="container">
   <div class="col-xs-12 col-sm-6">
-    <%= simple_form_for (contract) do |f| %>
+    <%= simple_form_for (@contract) do |f| %>
       <div class="about-programme">
         <h3>About the programme</h3>
         <%= f.input :programme, as: :select, collection: Programmes::PROGRAMME.map{|prog| prog[:title]}, input_html: {class: "select2"} %>

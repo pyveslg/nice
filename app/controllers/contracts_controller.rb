@@ -12,22 +12,21 @@ class ContractsController < ApplicationController
 
   def create
     @contract = Contract.new(contract_params)
-    @contract.programme = Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
-    if source_params[:source] != "frenchbooster"
+
+    @contract.programme = check_which_programme[:id]
+    @contract.code = check_which_programme[:code]
+    if @contract.code == "FBP"
+     @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+     @contract.code = @contract.access_fbp_hash[:code]
+     @contract.start_from = @contract.access_fbp_hash[:start_from]
+     @contract.end_at = @contract.access_fbp_hash[:end_at]
+    else
       @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
       @contract.sessions = set_sessions
       @contract.frequency = set_frequency
-    else
-     @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
-     @contract.start_from = Programmes::FBP[@contract.programme][:start_from]
-     @contract.end_at = Programmes::FBP[@contract.programme][:end_at]
     end
     if @contract.save
-      if source_params[:source] == "frenchbooster"
-        redirect_to fbp_contract_contract_path(@contract)
-      else
-        redirect_to contract_path(@contract)
-      end
+      redirect_to contract_path(@contract)
     else
       render :new
     end
@@ -38,67 +37,43 @@ class ContractsController < ApplicationController
 
   def update
     @contract.update(contract_params)
-    @contract.programme = Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
-    if source_params[:source] != "frenchbooster"
+    if @contract.code == "FBP"
+      @contract.programme = Programmes::FBP.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
+      @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+      @contract.start_from = @contract.access_fbp_hash[:start_from]
+      @contract.end_at = @contract.access_fbp_hash[:end_at]
+    else
+      @contract.programme = Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
       @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
       @contract.sessions = set_sessions
       @contract.frequency = set_frequency
-    else
-     @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
-     @contract.start_from = Programmes::FBP[@contract.programme][:start_from]
-     @contract.end_at = Programmes::FBP[@contract.programme][:end_at]
     end
     if @contract.save
-      if source_params[:source] == "frenchbooster"
-        redirect_to fbp_contract_contract_path(@contract)
-      else
-        redirect_to contract_path(@contract)
-      end
+      redirect_to contract_path(@contract)
     else
       render :edit
     end
   end
 
-  def fbp_contract
-    respond_to do |format|
-      format.pdf do
-        render :pdf => "#{@contract.sign_date.strftime('%y%m%d')}_Contrat de formation_#{@contract.first_name} #{@contract.last_name}",
-          :page_size => 'A4',
-          :dpi => 75,
-          :template => "contracts/fbp_contract.pdf.erb",
-          :layout => "pdf.html",
-          :margin => {
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0
-          },
-          :show_as_html => params[:debug].present?
-      end
-
-      format.html
-    end
-  end
-
   def show
-    respond_to do |format|
-      format.pdf do
-        render :pdf => "#{@contract.sign_date.strftime('%y%m%d')}_Contrat de formation_#{@contract.first_name} #{@contract.last_name}",
-          :page_size => 'A4',
-          :dpi => 75,
-          :template => "contracts/contract.pdf.erb",
-          :layout => "pdf.html",
-          :margin => {
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0
-          },
-          :show_as_html => params[:debug].present?
-      end
+      respond_to do |format|
+        format.pdf do
+          render :pdf => "#{@contract.sign_date.strftime('%y%m%d')}_Contrat de formation_#{@contract.first_name} #{@contract.last_name}",
+            :page_size => 'A4',
+            :dpi => 75,
+            :template => "contracts/#{@contract.code.downcase}_contract.pdf.erb",
+            :disposition => "attachment",
+            :layout => "pdf.html",
+            :margin => {
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0
+            }
+        end
 
-      format.html
-    end
+        format.html
+      end
   end
 
   def download
@@ -141,11 +116,12 @@ class ContractsController < ApplicationController
     params.require(:contract).permit(:programme, :client_type, :hourly_rate, :start_from, :end_at, :target, :teacher, :sign_date, :first_name, :last_name, :tel, :email, :address, :zipcode, :city)
   end
 
-  def source_params
-    params.require(:source).permit(:source)
-  end
 
   def inter_params
     params.require(:contract).permit(:number_of_weeks, :hours_by_sessions, :number_of_sessions, :number_of_classes, :hours_by_sessions_2, :number_of_sessions_2)
+  end
+
+  def check_which_programme
+    Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}.empty? ? Programmes::FBP.select{|programme| programme[:title] == contract_params[:programme]}[0] : Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0]
   end
 end

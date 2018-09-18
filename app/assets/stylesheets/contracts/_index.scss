@@ -1,0 +1,18 @@
+// Import page-specific CSS files here.
+@import "show";
+
+
+h3 {
+  font-size: 16px;
+  color: $turquoise-lt;
+  border-bottom: 2px solid $blue-vt;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  a {
+    color: $turquoise-lt;
+  }
+  a:hover {
+    color: $rose;
+  }
+}
+
