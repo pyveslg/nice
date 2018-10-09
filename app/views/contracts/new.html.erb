@@ -1,5 +1,7 @@
 <% if !params[:code].nil? && params[:code] == "FBP" %>
   <%= render "shared/fbp_form" %>
+<% elsif !params[:code].nil? && params[:code] == "EFC" %>
+  <%= render "shared/efc_form" %>
 <% else %>
   <%= render "shared/cpi_form" %>
 <% end %>

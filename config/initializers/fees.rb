@@ -47,10 +47,19 @@ module Fees
       value: 65
     },
     {
+      id: 9,
+      title: "[EFC] Q1 - 32€",
+      value: 32
+    },
+    {
       id: 10,
-      title: "OTHER",
-      value: ""
-    }
+      title: "[EFC] Q2 - 30€",
+      value: 30
+    },{
+      id: 11,
+      title: "[EFC] Q3 - 27€",
+      value: 27
+    },
   ]
 
   FBP_FEES = [
@@ -65,4 +74,5 @@ module Fees
       value: 609
     }
   ]
+
 end

@@ -1,0 +1,33 @@
+<% if @contract.sessions[0][0].to_i <= 12 %>
+  <ul>
+    <li><b>100%</b> du montant à la commande, facturés le &nbsp;<b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= 1 * @contract.efc_total_amount %>€</b></li>
+  </ul>
+<% end %>
+<% if @contract.sessions[0][0].to_i > 12 && @contract.sessions[0][0].to_i <= 24 %>
+  <b>2 options possibles</b> au choix du Stagiaire :
+  <ul>
+    <li>Soit payer <b>100%</b> du montant total à la commande</b>, facturés le &nbsp;<b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b> (<b><%= 1 * @contract.efc_total_amount %></b>€)</li>
+    <li>Soit payer <b>jusqu'à 2 fois</b> selon l'échéancier suivant :
+      <ul>
+        <li><b>50%</b> du montant à la commande, facturés le &nbsp;<b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= (0.5 * @contract.efc_total_amount).floor %>€</b></li>
+        <li><b>50%</b> du montant à la commande, facturés le &nbsp;<b><%= l(@contract.efc_calcul_payment_date(@contract.start_from, @contract.sessions[0][0].to_i, 0.5), format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= (0.5 * @contract.efc_total_amount).ceil %>€</b></li>
+      </ul>
+    </li>
+  </ul>
+<% end %>
+<% if @contract.sessions[0][0].to_i > 24 && @contract.sessions[0][0].to_i <= Programmes::PROGRAMME[2][:sessions].length %>
+  <b>2 options possibles</b> au choix du Stagiaire :
+  <ul>
+    <li>Soit payer <b>100%</b> du montant total à la commande</b>, facturés le &nbsp;<b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b> (<b><%= 1 * @contract.efc_total_amount %></b>€)</li>
+    <li>Soit payer <b>jusqu'à 3 fois</b> selon l'échéancier suivant :
+      <ul>
+        <li><b>30%</b> du montant à la commande, facturés le &nbsp;<b><%= l(@contract.first_payment_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= (0.3 * @contract.efc_total_amount).floor %>€</b></li>
+        <% second_date = @contract.efc_calcul_payment_date(@contract.start_from, @contract.sessions[0][0].to_i, 0.4) %>
+        <li><b>40%</b> du montant à la commande, facturés le &nbsp;<b><%= l(second_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= (0.4 * @contract.efc_total_amount).ceil %>€</b></li>
+        <% third_date = @contract.efc_calcul_payment_date(@contract.start_from, @contract.sessions[0][0].to_i, 0.7) %>
+        <% amount_left = @contract.efc_total_amount - (0.3 * @contract.efc_total_amount).floor - (0.4 * @contract.efc_total_amount).ceil %>
+        <li><b>30%</b> du montant à la commande, facturés le &nbsp;<b><%= l(third_date, format: "%d %B %Y", locale: 'fr') %></b>, soit <b><%= amount_left %>€</b></li>
+      </ul>
+    </li>
+  </ul>
+<% end %>

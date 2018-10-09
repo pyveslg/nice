@@ -101,6 +101,11 @@ class Contract < ApplicationRecord
     duration * set_price
   end
 
+  def efc_total_amount
+    new_session = sessions.select{|session| session if !session[0].nil?}[0]
+    new_session[0].to_i * set_price
+  end
+
   def programme_duration
     (end_at - start_from)
   end
@@ -129,6 +134,11 @@ class Contract < ApplicationRecord
     new_date = (payment_date + number_of_days).at_beginning_of_month.next_month
     (new_date.month == 1) ? new_date += 14 : new_date -= 14
     new_date.beginning_of_week
+  end
+
+  def efc_calcul_payment_date(start_date, number_of_weeks, pourcent)
+    dates = Programmes::PROGRAMME[2][:sessions]
+    dates.slice(dates.find_index(start_date), number_of_weeks * pourcent)[-1]
   end
 
   def sessions_by_week

@@ -1,0 +1,48 @@
+<div class="title">
+  <h1 class="main-linearize">Evening French Classes | <span class="rosify">Generate Contract</span></h1>
+</div>
+<div class="container">
+  <div class="col-xs-12 col-sm-6">
+    <%= simple_form_for (@contract) do |f| %>
+      <div class="about-programme">
+        <h3>About the programme</h3>
+        <%= f.hidden_field :programme, value: "Evening French Classes" %>
+        <%= f.hidden_field :client_type, value: "Individual" %>
+        <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]}.select{|title| /.EFC.*/.match(title)}, input_html: {class: "select2"} %>
+        <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS, input_html: {class: "select2"} %>
+      </div>
+      <div class="about-programme">
+        <h3>Programme Start & Ending Dates</h3>
+        <div class="col-xs-6">
+          <%= f.input :start_from, as: :string, input_html: {class: "datepicker"} %>
+        </div>
+        <div class="col-xs-6">
+          <%= f.input :end_at, as: :string, input_html: {class: "datepicker"} %>
+        </div>
+        <h3>Programme Number of Sessions</h3>
+
+        <%= f.input :number_of_sessions, as: :select, collection: 1..50, input_html: {class: "select2"} %>
+        <%= f.hidden_field :hours_by_sessions, value: 1.5 %>
+      </div>
+
+        <div class="contact-details">
+          <h3>About the contractor</h3>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :tel %>
+          <%= f.input :email %>
+          <%= f.input :address %>
+          <%= f.input :zipcode %>
+          <%= f.input :city %>
+        </div>
+      <div class="about-contract">
+        <h3>Signature Date</h3>
+        <%= f.input :sign_date, as: :string, input_html: {class: "datepicker"}, label: false %>
+      </div>
+      <%= simple_fields_for :source do |v| %>
+        <%= v.hidden_field :source, value: params[:action] %>
+      <% end %>
+      <%= f.submit "Generate Contract", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
