@@ -133,7 +133,7 @@ class Contract < ApplicationRecord
     number_of_days = week_to_end_pourcent * 7
     new_date = (payment_date + number_of_days).at_beginning_of_month.next_month
     (new_date.month == 1) ? new_date += 14 : new_date -= 14
-    new_date.beginning_of_week
+    new_date.beginning_of_month
   end
 
   def efc_calcul_payment_date(start_date, number_of_weeks, pourcent)
