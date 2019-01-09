@@ -109,7 +109,7 @@
     <table class="text-left">
       <tr>
         <td><i class="fa fa-eur" aria-hidden="true"></i> MONTANT TOTAL</td>
-        <td><b><%= @contract.efc_total_amount %>€</b> (<%= @contract.efc_total_amount.humanize %> euros), soit <%= @contract.set_price %>€ par session de <%= @contract.sessions[0][1] %>h.<br/>Novexpat n’est pas actuellement assujetti à la TVA (Article 293B du CGI).
+        <td><b><%= @contract.wfc_total_amount %>€</b> (<%= @contract.wfc_total_amount.humanize %> euros), soit <%= @contract.set_price %>€ par session de <%= @contract.sessions[0][1] %>h.<br/>Novexpat n’est pas actuellement assujetti à la TVA (Article 293B du CGI).
         </td>
       </tr>
       <tr>
@@ -120,7 +120,7 @@
       </tr>
       <tr>
         <td><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ECHÉANCES DES PAIEMENTS</td>
-        <td><%= render "efc_echeancier.html" %></td>
+        <td><%= render "wfc_echeancier.html" %></td>
       </tr>
     </table>
     <p>Une facture sera envoyée à chaque échéance. Une copie de la feuille d’émargement sur laquelle figure un décompte précis des heures prises et restantes est disponible sur simple demande.</p>
@@ -133,7 +133,7 @@
   <!-- ARTICLE 5 -->
   <div class="article">
     <p class="blue"><b>Article 5 – Interruption, annulation ou report de la formation</b></p>
-    <p>En cas d’interruption souhaité du contrat en cours de formation, le client reste redevable du montant total de la formation<b>&nbsp au prorata des séances ayant effectivement eu lieu</b> - que le Stagiaire y ait été présent ou non - <b>&nbsp majoré de 120€</b> (cent vingt euros) de frais de dossier.</p>
+    <p>En cas d’interruption souhaité du contrat en cours de formation, le client reste redevable du montant total de la formation<b>&nbsp au prorata des séances ayant effectivement eu lieu</b> - que le Stagiaire y ait été présent ou non - <b>&nbsp majoré de 90€</b> (quatre-vingt-dix euros) de frais de dossier.</p>
     <p>Toute séance manquée par le Stagiaire, pour quelque raison que ce soit, est considérée comme due et ne pourra pas faire l'objet de report ou de remboursement.</p>
     <p>En cas de force majeure ou de maladie grave, dûment justifiée par un certificat médical, un report des dates de la formation peut être accepté si des dates ultérieures sont effectivement proposées.</p>
     <p>Novexpat se réserve le droit d'annuler ou de reporter une session. Dans ce cas, tous les stagiaires seront prévenus en amont et se verront proposer une nouvelle date. Si aucune nouvelle date ne convient à la majorité des stagiaires, la-dite session sera intégralement remboursée.</p>

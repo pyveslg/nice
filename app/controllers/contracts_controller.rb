@@ -12,7 +12,7 @@ class ContractsController < ApplicationController
 
   def create
     @contract = Contract.new(contract_params)
-
+    @contract.payment_condition = 3 if inter_params[:payment_3].to_i == 1
     @contract.programme = check_which_programme[:id]
     @contract.code = check_which_programme[:code]
     if @contract.code == "FBP"
@@ -37,6 +37,7 @@ class ContractsController < ApplicationController
 
   def update
     @contract.update(contract_params)
+    @contract.payment_condition = 3 if inter_params[:payment_3].to_i == 1
     if @contract.code == "FBP"
       @contract.programme = Programmes::FBP.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
       @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
@@ -118,7 +119,7 @@ class ContractsController < ApplicationController
 
 
   def inter_params
-    params.require(:contract).permit(:number_of_weeks, :hours_by_sessions, :number_of_sessions, :number_of_classes, :hours_by_sessions_2, :number_of_sessions_2)
+    params.require(:contract).permit(:payment_3, :number_of_weeks, :hours_by_sessions, :number_of_sessions, :number_of_classes, :hours_by_sessions_2, :number_of_sessions_2)
   end
 
   def check_which_programme

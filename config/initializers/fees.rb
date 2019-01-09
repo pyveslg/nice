@@ -48,16 +48,16 @@ module Fees
     },
     {
       id: 9,
-      title: "[EFC] Q1 - 32€",
+      title: "[WFC] Q1 - 32€",
       value: 32
     },
     {
       id: 10,
-      title: "[EFC] Q2 - 30€",
+      title: "[WFC] Q2 - 30€",
       value: 30
     },{
       id: 11,
-      title: "[EFC] Q3 - 27€",
+      title: "[WFC] Q3 - 27€",
       value: 27
     },
   ]

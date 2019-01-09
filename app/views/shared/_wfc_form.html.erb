@@ -1,14 +1,15 @@
 <div class="title">
-  <h1 class="main-linearize">Evening French Classes | <span class="rosify">Generate Contract</span></h1>
+  <h1 class="main-linearize">Weekly French Classes | <span class="rosify">Generate Contract</span></h1>
 </div>
 <div class="container">
   <div class="col-xs-12 col-sm-6">
     <%= simple_form_for (@contract) do |f| %>
       <div class="about-programme">
         <h3>About the programme</h3>
-        <%= f.hidden_field :programme, value: "Evening French Classes" %>
+        <%= f.hidden_field :programme, value: "Weekly French Classes" %>
         <%= f.hidden_field :client_type, value: "Individual" %>
-        <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]}.select{|title| /.EFC.*/.match(title)}, input_html: {class: "select2"} %>
+        <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]}.select{|title| /.WFC.*/.match(title)}, input_html: {class: "select2"} %>
+        <%= f.input :payment_3, as: :boolean, label: " Payment Smoothing" %>
         <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS, input_html: {class: "select2"} %>
       </div>
       <div class="about-programme">

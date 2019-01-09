@@ -7,8 +7,8 @@
 <% if @contract.code == "CPI" %>
   <%= render "cpi_contract.html.erb" %>
 <% end %>
-<% if @contract.code == "EFC" %>
-  <%= render "efc_contract.html.erb" %>
+<% if @contract.code == "WFC" %>
+  <%= render "wfc_contract.html.erb" %>
 <% end %>
 <div id="back_to_contracts">
   <%= link_to contracts_path do  %>
