@@ -1,0 +1,5 @@
+<% if @contract.duration == 50 %>
+  &nbsp Si le volume horaire alors réalisé dépasse 30 heures, le montant horaire de chacune des séances ayant effectivement eu lieu sera revalorisé à cinquante huit euros (58€), tarif applicable pour les formations de plus de 30 heures et de moins de 50 heures. Si le volume horaire réalisé ne dépasse pas 30 heures, le montant horaire de chacune des séances ayant effectivement eu lieu sera revalorisé à soixante-cinq euros (65€), tarif applicable pour les formations de moins de 30 heures. Dans tous les cas, le montant remboursable au Stagiaire ne pourra excéder 70% du montant total de la formation.
+<% elsif @contract.duration == 30 %>
+  &nbsp Si le volume horaire réalisé ne dépasse pas 30h, le montant horaire de chacune des séances ayant effectivement eu lieu sera revalorisé à soixante-cinq euros (65€), tarif applicable pour les formations de moins de 30 heures. Dans tous les cas, le montant remboursable au Stagiaire ne pourra excéder 70% du montant total de la formation.
+<% end %>

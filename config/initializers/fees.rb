@@ -33,17 +33,17 @@ module Fees
     },
     {
       id: 6,
-      title: "[CPI-E] PAY AS YOU GO - 75€",
+      title: "[CPI-E] PAY AS YOU GO - 80€",
       value: 75
     },
     {
       id: 7,
-      title: "[CPI-E] PACK 30H - 70€",
+      title: "[CPI-E] PACK 30H - 75€",
       value: 70
     },
     {
       id: 8,
-      title: "[CPI-E] PACK 50H - 65€",
+      title: "[CPI-E] PACK 50H - 70€",
       value: 65
     },
     {
@@ -65,13 +65,13 @@ module Fees
   FBP_FEES = [
     {
       id: 0,
-      title: "FULL PRICE - 659€",
-      value: 659
+      title: "FULL PRICE - 709€",
+      value: 709
     },
     {
       id: 1,
-      title: "DISCOUNT - 609€",
-      value: 609
+      title: "DISCOUNT - 659€",
+      value: 659
     }
   ]
 

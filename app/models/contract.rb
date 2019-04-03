@@ -10,6 +10,7 @@
 # t.integer "frequency"
 # t.string "teacher"
 # t.integer "payment_condition"
+# t.integer "installment"
 # t.datetime "sign_date"
 # t.string "first_name"
 # t.string "last_name"
@@ -117,7 +118,7 @@ class Contract < ApplicationRecord
     if sign_date + 14 >= start_from
       payment_date = start_from - 1
     else
-      payment_date = start_from - 14
+      payment_date = sign_date + 14
       if payment_date.wday == 6 || payment_date.wday == 7
         if (payment_date + 1).wday == 7
           payment_date = sign_date + 16

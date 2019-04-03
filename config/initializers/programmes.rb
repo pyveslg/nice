@@ -90,10 +90,19 @@ module Programmes
       },
       {
         id: 5,
-        title: "FrenchBooster Programme - Spring 2019",
+        title: "FrenchBooster Programme - Saturdays - Spring 2019",
         code: "FBP",
         start_from: Date.new(2019,4,6),
         end_at: Date.new(2019,6,22),
+        second_payment: Date.new(2019,5,6),
+        third_payment: Date.new(2019,6,6)
+      },
+      {
+        id: 6,
+        title: "FrenchBooster Programme - Fridays - Spring 2019",
+        code: "FBP",
+        start_from: Date.new(2019,4,1),
+        end_at: Date.new(2019,6,24),
         second_payment: Date.new(2019,5,6),
         third_payment: Date.new(2019,6,6)
       }

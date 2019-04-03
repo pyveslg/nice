@@ -9,6 +9,7 @@
         <%= f.input :programme, as: :select, collection: Programmes::PROGRAMME.map{|prog| prog[:title]}, input_html: {class: "select2"} %>
         <%= f.input :client_type, as: :select, collection: Contract::CLIENT_TYPE.map{|client| client[:title]}, input_html: {class: "select2"} %>
         <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]}, input_html: {class: "select2"} %>
+        <%= f.input :installment, as: :select, collection: [1, 2, 3, 4], input_html: {class: "select2"} %>
         <%= f.input :target, as: :select, collection: Contract::TARGET, input_html: {class: "select2"} %>
         <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS, input_html: {class: "select2"} %>
       </div>

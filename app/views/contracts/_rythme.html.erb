@@ -1,6 +1,6 @@
 <b><%= @contract.sessions[0][0] %> séances de <%= @contract.sessions[0][1] %>h</b>,
 <% if @contract.sessions[1][0] != ""  %>
-  et <b><%= @contract.sessions[1][0] %> séances de <%= @contract.sessions[1][1] %>h</b>,
+  et <b><%= pluralize(@contract.sessions[1][0], "séance") %> de <%= @contract.sessions[1][1] %>h</b>,
 <% end %>
 <% if @contract.frequency[1].to_i > 2 %>
 à raison de <b><%= @contract.frequency[0] %> fois toutes les <%= @contract.frequency[1] %> semaines</b>.
