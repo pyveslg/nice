@@ -62,52 +62,33 @@ module Programmes
 
     FBP = [
       {
+        id: 1,
+        title: "FrenchBooster Summer Intensive Programme - July 2019",
+        code: "FBPI",
+        start_from: Date.new(2019,7,1),
+        end_at: Date.new(2019,7,11),
+        second_payment: Date.new(2019,7,1),
+        third_payment: Date.new(2019,7,1)
+      },
+      {
         id: 2,
-        title: "FrenchBooster Programme - Fall 2018",
+        title: "FrenchBooster Programme - Mondays - Fall 2019",
         code: "FBP",
-        start_from: Date.new(2018,9,29),
-        end_at: Date.new(2018,12,8),
-        second_payment: Date.new(2018,10,20),
-        third_payment: Date.new(2018,11,20)
+        start_from: Date.new(2018,9,30),
+        end_at: Date.new(2018,12,16),
+        second_payment: Date.new(2018,10,28),
+        third_payment: Date.new(2018,11,28)
       },
       {
         id: 3,
-        title: "FrenchBooster Programme - Saturdays - Winter 2019",
+        title: "FrenchBooster Programme - Saturdays - Fall 2019",
         code: "FBP",
-        start_from: Date.new(2019,1,19),
-        end_at: Date.new(2019,3,30),
-        second_payment: Date.new(2019,2,11),
-        third_payment: Date.new(2019,3,11)
-      },
-      {
-        id: 4,
-        title: "FrenchBooster Programme - Mondays - Winter 2019",
-        code: "FBP",
-        start_from: Date.new(2019,1,28),
-        end_at: Date.new(2019,4,15),
-        second_payment: Date.new(2019,3,1),
-        third_payment: Date.new(2019,4,1)
-      },
-      {
-        id: 5,
-        title: "FrenchBooster Programme - Saturdays - Spring 2019",
-        code: "FBP",
-        start_from: Date.new(2019,4,6),
-        end_at: Date.new(2019,6,22),
-        second_payment: Date.new(2019,5,6),
-        third_payment: Date.new(2019,6,6)
-      },
-      {
-        id: 6,
-        title: "FrenchBooster Programme - Fridays - Spring 2019",
-        code: "FBP",
-        start_from: Date.new(2019,4,1),
-        end_at: Date.new(2019,6,24),
-        second_payment: Date.new(2019,5,6),
-        third_payment: Date.new(2019,6,6)
+        start_from: Date.new(2019,10,5),
+        end_at: Date.new(2019,12,14),
+        second_payment: Date.new(2019,10,28),
+        third_payment: Date.new(2019,11,28)
       }
     ]
-
   end
 
 end

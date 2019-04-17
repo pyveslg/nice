@@ -1,4 +1,4 @@
-<% if @contract.code == "FBP" %>
+<% if @contract.code == "FBP" || @contract.code == "FBPI" %>
   <%= render "shared/fbp_form" %>
 <% elsif @contract.code == "WFC" %>
   <%= render "shared/wfc_form" %>

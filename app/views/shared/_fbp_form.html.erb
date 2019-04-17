@@ -8,6 +8,7 @@
         <h3>About the programme</h3>
         <%= f.input :programme, as: :select, collection: Programmes::FBP.map{|prog| prog[:title]}, input_html: {class: "select2"} %>
         <%= f.input :hourly_rate, as: :select, collection: Fees::FBP_FEES.map{|fee| fee[:title]}, input_html: {class: "select2"} %>
+        <fieldset class="form-group radio_buttons optional contract_cpi_on_top"><label class="form-control-label select optional" for="contract_hourly_rate">Additional 1-on-1 French Classes (10h) ?</label><input type="hidden" name="contract[cpi_on_top]" value=""><div class="form-check"><input class="form-check-input radio_buttons optional" type="radio" value="true" name="contract[cpi_on_top]" id="contract_cpi_on_top_true"><label class="collection_radio_buttons" for="contract_cpi_on_top_true">&nbsp Yes</label></div><div class="form-check"><input class="form-check-input radio_buttons optional" readonly="readonly" type="radio" value="false" name="contract[cpi_on_top]" id="contract_cpi_on_top_false"><label class="collection_radio_buttons" for="contract_cpi_on_top_false">&nbsp No</label></div></fieldset>
       </div>
       <div class="contact-details">
         <h3>About the contractor</h3>

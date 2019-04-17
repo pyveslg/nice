@@ -70,9 +70,9 @@ module Fees
     },
     {
       id: 1,
-      title: "DISCOUNT - 659€",
-      value: 659
-    }
+      title: "FULL PRICE SUMMER - 759€",
+      value: 759
+    },
   ]
 
 end

@@ -67,7 +67,7 @@ class Contract < ApplicationRecord
   end
 
   def contract_number
-    if code == "FBP"
+    if code == "FBP" || "FBPI"
       "NOV-#{code}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
     else
       if client_type == 0 || client_type.nil?
@@ -79,7 +79,7 @@ class Contract < ApplicationRecord
   end
 
   def set_programme_title
-    if code == "FBP"
+    if code == "FBP" || "FBPI"
       Programmes::FBP[programme - Programmes::FBP[0][:id]][:title].upcase
     else
       Programmes::PROGRAMME[programme][:title].upcase

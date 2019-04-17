@@ -15,7 +15,7 @@ class ContractsController < ApplicationController
     @contract.payment_condition = 3 if inter_params[:payment_3].to_i == 1
     @contract.programme = check_which_programme[:id]
     @contract.code = check_which_programme[:code]
-    if @contract.code == "FBP"
+    if @contract.code == "FBP" || @contract.code == "FBPI"
      @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
      @contract.code = @contract.access_fbp_hash[:code]
      @contract.start_from = @contract.access_fbp_hash[:start_from]
@@ -38,7 +38,7 @@ class ContractsController < ApplicationController
   def update
     @contract.update(contract_params)
     @contract.payment_condition = 3 if inter_params[:payment_3].to_i == 1
-    if @contract.code == "FBP"
+    if @contract.code == "FBP" || @contract.code == "FBPI"
       @contract.programme = Programmes::FBP.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
       @contract.hourly_rate = Fees::FBP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
       @contract.start_from = @contract.access_fbp_hash[:start_from]
@@ -80,7 +80,8 @@ class ContractsController < ApplicationController
   def download
     html = render_to_string(:page_size => 'A4',
           :dpi => 75,
-          :template => "contracts/contract.pdf.erb",
+          :template => "contracts/#{@contract.code.downcase}_contract.pdf.erb",
+          :disposition => "attachment",
           :layout => "pdf.html",
           :margin => {
             top: 0,
@@ -114,7 +115,7 @@ class ContractsController < ApplicationController
   end
 
   def contract_params
-    params.require(:contract).permit(:programme, :client_type, :hourly_rate, :start_from, :end_at, :target, :teacher, :sign_date, :first_name, :last_name, :tel, :email, :address, :zipcode, :city, :installment)
+    params.require(:contract).permit(:programme, :cpi_on_top, :client_type, :hourly_rate, :start_from, :end_at, :target, :teacher, :sign_date, :first_name, :last_name, :tel, :email, :address, :zipcode, :city, :installment)
   end
 
 

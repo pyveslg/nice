@@ -1,6 +1,9 @@
 <% if @contract.code == "FBP" %>
   <%= render "fbp_contract.html.erb"  %>
 <% end %>
+<% if @contract.code == "FBPI" %>
+  <%= render "fbpi_contract"  %>
+<% end %>
 <% if @contract.code == "CPIO" %>
   <%= render "cpio_contract.html.erb" %>
 <% end %>
