@@ -105,7 +105,7 @@
     <table class="text-left">
       <tr>
         <td><i class="fa fa-eur" aria-hidden="true"></i> MONTANT TOTAL</td>
-        <td><b><%= Fees::FBP_FEES[@contract.hourly_rate][:value] %>€</b> (<%= Fees::FBP_FEES[@contract.hourly_rate][:value].humanize %> euros), soit env. <%= Fees::FBP_FEES[@contract.hourly_rate][:value].fdiv(33).round(1) %>€ de l’heure.<br/>Novexpat n’est pas assujetti à la TVA (Article 293B du CGI)
+        <td><b><%= @contract.set_fbp_price %>€ TTC</b> (<%= @contract.set_fbp_price.humanize %> euros), soit env. <%= @contract.set_fbp_price.fdiv(37).round(1) %>€ de l’heure.<br/>La TVA applicable au taux de 20% (<%= @contract.fbp_tva_amount %>€) est incluse dans ce montant.<b>
         </td>
       </tr>
       <tr>

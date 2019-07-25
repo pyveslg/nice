@@ -23,40 +23,45 @@ module Fees
     },
     {
       id: 4,
-      title: "[CPIO] PACK 30H - 48€",
-      value: 48
+      title: "[CPIO] PACK 20H - 50€",
+      value: 50
     },
     {
       id: 5,
+      title: "[CPIO] PACK 30H - 50€",
+      value: 50
+    },
+    {
+      id: 6,
       title: "[CMG] PAY AS YOU GO - 30€",
       value: 30
     },
     {
-      id: 6,
+      id: 7,
       title: "[CPI-E] PAY AS YOU GO - 80€",
       value: 75
     },
     {
-      id: 7,
+      id: 8,
       title: "[CPI-E] PACK 30H - 75€",
       value: 70
     },
     {
-      id: 8,
+      id: 9,
       title: "[CPI-E] PACK 50H - 70€",
       value: 65
     },
     {
-      id: 9,
+      id: 10,
       title: "[WFC] Q1 - 32€",
       value: 32
     },
     {
-      id: 10,
+      id: 11,
       title: "[WFC] Q2 - 30€",
       value: 30
     },{
-      id: 11,
+      id: 12,
       title: "[WFC] Q3 - 27€",
       value: 27
     },

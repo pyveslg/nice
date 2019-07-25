@@ -3,7 +3,7 @@ class ContractsController < ApplicationController
   layout "pdf", only: [ :show ]
 
   def index
-    @contracts = Contract.all
+    @contracts = Contract.all.order(created_at: :DESC)
   end
 
   def new

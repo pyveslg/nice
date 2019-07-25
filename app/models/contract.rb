@@ -79,7 +79,7 @@ class Contract < ApplicationRecord
   end
 
   def set_programme_title
-    if code == "FBP" || "FBPI"
+    if code == "FBP" || code == "FBPI"
       Programmes::FBP[programme - Programmes::FBP[0][:id]][:title].upcase
     else
       Programmes::PROGRAMME[programme][:title].upcase
@@ -101,8 +101,22 @@ class Contract < ApplicationRecord
      Fees::FEES[hourly_rate][:value]
   end
 
+  def set_fbp_price
+    self.cpi_on_top ? Fees::FBP_FEES[hourly_rate][:value].to_i + 10*58 : Fees::FBP_FEES[hourly_rate][:value]
+  end
+
   def total_amount
     duration * set_price
+  end
+
+  def tva_amount
+    tva = self.total_amount * 0.2
+    tva.round(1) == tva.floor ? tva.floor : tva.round(1)
+  end
+
+  def fbp_tva_amount
+    tva = self.set_fbp_price * (1 - 1.fdiv(1.2))
+    tva.round(1) == tva.floor ? tva.floor : tva.round(1)
   end
 
   def wfc_total_amount

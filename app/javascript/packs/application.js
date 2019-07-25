@@ -19,6 +19,6 @@ datepickers.forEach((datepicker) => {
 
 const selectable = document.querySelectorAll(".select2");
 selectable.forEach((item) => {
-  $(item).select2({
+  document.querySelector(item).select2({
   });
 })

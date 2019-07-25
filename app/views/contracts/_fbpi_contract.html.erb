@@ -105,8 +105,7 @@
     <table class="text-left">
       <tr>
         <td><i class="fa fa-eur" aria-hidden="true"></i> MONTANT TOTAL</td>
-        <% price = @contract.cpi_on_top ? Fees::FBP_FEES[@contract.hourly_rate][:value].to_i + 10*58 : Fees::FBP_FEES[@contract.hourly_rate][:value] %>
-        <td><b><%= price %>€</b> (<%= price.humanize %> euros), soit env. <%= price.fdiv(33).round(1) %>€ de l’heure.<br/>Novexpat n’est pas assujetti à la TVA (Article 293B du CGI)
+        <td><b><%= @contract.set_fbp_price %>€ TTC</b> (<%= @contract.set_fbp_price.humanize %> euros), soit env. <%= @contract.set_fbp_price.fdiv(37).round(1) %>€ de l’heure.<br/>La TVA applicable au taux de 20% (<%= @contract.fbp_tva_amount %>€) est incluse dans ce montant.
         </td>
       </tr>
       <tr>
@@ -136,25 +135,25 @@
   <!-- ARTICLE 5 -->
   <div class="article" style="margin-top: 10px;">
     <p class="blue"><b>Article 5 – Interruption, annulation ou report de la formation</b></p>
-    <p>En cas d'annulation de la formation souhaitée et signifiée par le Stagiaire après que le délai de rétraction soit écoulé et </p>
+    <!-- <p>En cas d'annulation de la formation souhaitée et signifiée par le Stagiaire après que le délai de rétraction soit écoulé et </p>
     <table class="text-left">
       <tr>
-        <td style="font-weight: 300;">avant le <%= l(@contract.start_from - 30, format: "%d %B %Y", locale: 'fr') %></td>
+        <td style="font-weight: 300;">avant le <%#= l(@contract.start_from - 30, format: "%d %B %Y", locale: 'fr') %></td>
         <td>100% du montant total de la formation réglé à l'inscription seront remboursés au Stagiaire.</td>
       </tr>
       <tr>
-        <td style="font-weight: 300;">entre le <%= l(@contract.start_from - 30, format: "%d %B %Y", locale: 'fr') %> et le <%= l(@contract.start_from - 17, format: "%d %B %Y", locale: 'fr') %></td>
+        <td style="font-weight: 300;">entre le <%#= l(@contract.start_from - 30, format: "%d %B %Y", locale: 'fr') %> et le <%#= l(@contract.start_from - 17, format: "%d %B %Y", locale: 'fr') %></td>
         <td>70% du montant total de la formation réglé à l'inscription seront remboursés au Stagiaire.</td>
       </tr>
       <tr>
-        <td style="font-weight: 300;">entre le <%= l(@contract.start_from - 16, format: "%d %B %Y", locale: 'fr') %> et le <%= l(@contract.start_from - 8, format: "%d %B %Y", locale: 'fr') %></td>
+        <td style="font-weight: 300;">entre le <%#= l(@contract.start_from - 16, format: "%d %B %Y", locale: 'fr') %> et le <%#= l(@contract.start_from - 8, format: "%d %B %Y", locale: 'fr') %></td>
         <td>50% du montant total de la formation réglé à l'inscription seront remboursés au Stagiaire.</td>
       </tr>
       <tr>
-        <td style="font-weight: 300;">après le <%= l(@contract.start_from - 8, format: "%d %B %Y", locale: 'fr') %></td>
+        <td style="font-weight: 300;">après le <%#= l(@contract.start_from - 8, format: "%d %B %Y", locale: 'fr') %></td>
         <td>aucun frais ne pourra être remboursé au Stagiaire.</td>
       </tr>
-    </table>
+    </table> -->
 
     <p>En cas d’interruption en cours de formation, hors cas de force majeure dûment reconnu et justifié, le Stagiaire doit s’acquitter du montant total de la formation et ne peut obtenir aucun remboursement des sommes versées.</p>
     <% if @contract.cpi_on_top %>
