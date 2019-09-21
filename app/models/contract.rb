@@ -110,7 +110,7 @@ class Contract < ApplicationRecord
   end
 
   def tva_amount
-    tva = self.total_amount * 0.2
+    tva = self.total_amount * (1 - 1.fdiv(1.2))
     tva.round(1) == tva.floor ? tva.floor : tva.round(1)
   end
 
@@ -131,6 +131,7 @@ class Contract < ApplicationRecord
   def first_payment_date
     if sign_date + 14 >= start_from
       payment_date = start_from - 1
+      payment_date = payment_date.wday == 0 ? (payment_date - 1) : payment_date
     else
       payment_date = sign_date + 14
       if payment_date.wday == 6 || payment_date.wday == 7

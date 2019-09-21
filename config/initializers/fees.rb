@@ -65,6 +65,11 @@ module Fees
       title: "[WFC] Q3 - 27€",
       value: 27
     },
+    {
+      id: 13,
+      title: "[CPI] PACK 40H - 58€",
+      value: 58
+    }
   ]
 
   FBP_FEES = [
