@@ -3,5 +3,5 @@
 <% elsif !params[:code].nil? && params[:code] == "WFC" %>
   <%= render "shared/wfc_form" %>
 <% else %>
-  <%= render "shared/cpi_form" %>
+  <%= render "shared/cpi_form", code: params[:code] %>
 <% end %>

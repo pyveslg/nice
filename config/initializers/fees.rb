@@ -1,5 +1,13 @@
 module Fees
 
+  FUP_FEES = [
+    {
+      id: 0,
+      title: "PACK 30H - 60€",
+      value: 60
+    }
+  ]
+
   FEES = [
     {
       id: 0,

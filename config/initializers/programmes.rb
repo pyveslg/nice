@@ -57,6 +57,11 @@ module Programmes
           DateTime.new(2019,6,15),
           DateTime.new(2019,6,22)
         ]
+      },
+      {
+        id: 3,
+        title: "1-on-1 FrenchUp Program",
+        code: "FUP"
       }
     ]
 

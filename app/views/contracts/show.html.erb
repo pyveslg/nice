@@ -10,6 +10,9 @@
 <% if @contract.code == "CPI" %>
   <%= render "cpi_contract.html.erb" %>
 <% end %>
+<% if @contract.code == "FUP" %>
+  <%= render "fup_contract.html.erb" %>
+<% end %>
 <% if @contract.code == "WFC" %>
   <%= render "wfc_contract.html.erb" %>
 <% end %>

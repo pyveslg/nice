@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.5.3'
+ruby File.read('.ruby-version').strip
 
 gem 'bootsnap', require: false
 gem 'figaro'

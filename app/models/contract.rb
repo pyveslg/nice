@@ -98,11 +98,15 @@ class Contract < ApplicationRecord
   end
 
   def set_price
-     Fees::FEES[hourly_rate][:value]
+    self.code == "FUP" ? Fees::FUP_FEES[hourly_rate][:value] : Fees::FEES[hourly_rate][:value]
   end
 
   def set_fbp_price
     self.cpi_on_top ? Fees::FBP_FEES[hourly_rate][:value].to_i + 10*58 : Fees::FBP_FEES[hourly_rate][:value]
+  end
+
+  def total_amount
+    duration * set_price
   end
 
   def total_amount
@@ -152,7 +156,6 @@ class Contract < ApplicationRecord
     number_of_days = week_to_end_pourcent * 7
     new_date = (payment_date + number_of_days).at_beginning_of_month.next_month
     (new_date.month == 1) ? new_date += 14 : new_date
-    new_date.beginning_of_month
   end
 
   def wfc_calcul_payment_date(start_date, number_of_weeks, pourcent)
