@@ -86,6 +86,15 @@ class Contract < ApplicationRecord
     end
   end
 
+  def set_fup_programme_title
+    fee = self.set_price
+    case fee
+    when 60 then "1-ON-1 FRENCHUP PROGRAM"
+    when 63 then "2-ON-1 FRENCHUP PROGRAM"
+    when 66 then "3-ON-1 FRENCHUP PROGRAM"
+    end
+  end
+
   def duration
     new_sessions = sessions.select do |session|
       session if session[0] != ""

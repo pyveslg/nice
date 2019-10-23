@@ -5,6 +5,16 @@ module Fees
       id: 0,
       title: "PACK 30H - 60€",
       value: 60
+    },
+    {
+      id: 1,
+      title: "PACK 30H - 63€",
+      value: 63
+    },
+    {
+      id: 2,
+      title: "PACK 30H - 66€",
+      value: 66
     }
   ]
 

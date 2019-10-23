@@ -3,7 +3,7 @@
   <img src="https://res.cloudinary.com/pywagon/image/upload/v1507113122/novexpat_fit_white_gcawfa.png" class="logo">
   <h1>CONTRAT #<span class="purple"><%= @contract.contract_number %></span><br/>
     POUR UNE FORMATION EN FRANÇAIS LANGUE ÉTRANGÈRE :<br/><br/>
-    <span class="purple"><%= @contract.set_programme_title %><br/>
+    <span class="purple"><%= @contract.set_fup_programme_title %><br/>
     PACK <%= @contract.duration %>H</span></h1>
 
   <div class="contacts">
@@ -11,7 +11,7 @@
     <ol>
       <li><b>NOVEXPAT</b>, SAS au capital de 1.000 euros ayant son siège social sis 58 rue de la Fontaine au Roi 75011 Paris, immatriculée au RCS de Paris sous le N&deg; 839 665 759, enregistrée en tant qu’organisme de formation sous le N&deg; 11755750375 auprès du préfet de région d'Île-de-France, et représentée par Mme Fabienne Defaux, Présidente,<br/><br/>
       Ci-dessous désignée par « Novexpat »,</li><br/>
-      <li><b><%= @contract.last_name.upcase %> <%= @contract.first_name.capitalize %></b>, ci-dessous désignée par le « Stagiaire »</li>
+      <li><b><%= @contract.last_name.upcase %> <%= @contract.first_name %></b>, ci-dessous désignée par le « Stagiaire »</li>
     </ol>
     <table>
       <tr>
@@ -47,7 +47,7 @@
 
     <p>En exécution du présent contrat, Novexpat s’engage à fournir au Stagiaire, l’action de formation suivante :</p>
 
-    <p class="text-center"><b>« <%= @contract.set_programme_title %> »</b></p>
+    <p class="text-center"><b>« <%= @contract.set_fup_programme_title %> »</b></p>
 
     <p>Cette formation n’entre pas dans le cadre de la Formation Professionnelle Continue tel que défini dans l’article L.6313-1 du code du travail.</p>
   </div>
@@ -130,7 +130,7 @@
   <!-- ARTICLE 5 -->
   <div class="article">
     <p class="blue"><b>Article 5 – Interruption, annulation ou report de la formation</b></p>
-    <p>En cas d’interruption souhaité du contrat en cours de formation, le client reste redevable du montant total de la formation<b>&nbsp au prorata temporis des séances ayant effectivement eu lieu, augmenté de frais de dossier de 50€ TTC</b>. En cas de trop perçu, Novexpat effectuera un remboursement par virement bancaire, diminué des frais de dossier et, si applicable, des frais de change.</p>
+    <p>En cas d’interruption souhaité du contrat en cours de formation, le Stagiaire reste redevable du montant total de la formation<b>&nbsp au prorata temporis des séances ayant effectivement eu lieu, augmenté de frais de dossier de 50€ TTC</b>. En cas de trop perçu, Novexpat effectuera un remboursement par virement bancaire, diminué des frais de dossier et, si applicable, des frais de change.</p>
     <p>En cas d’annulation de la séance <b>moins de 48 heures à l’avance</b>, hors cas de force majeure dûment reconnue et justifiée, la totalité de la dite séance peut être réclamée au Stagiaire.</p>
   </div>
 
