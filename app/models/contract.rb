@@ -118,13 +118,14 @@ class Contract < ApplicationRecord
     duration * set_price
   end
 
-  def total_amount
-    duration * set_price
-  end
-
   def tva_amount
-    tva = self.total_amount * (1 - 1.fdiv(1.2))
-    tva.round(1) == tva.floor ? tva.floor : tva.round(1)
+    if self.client_type == 1
+      tva = self.total_amount * 1.2 * (1 - 1.fdiv(1.2))
+      tva.round(1) == tva.floor ? tva.floor : tva.round(1)
+    else
+      tva = self.total_amount * (1 - 1.fdiv(1.2))
+      tva.round(1) == tva.floor ? tva.floor : tva.round(1)
+    end
   end
 
   def fbp_tva_amount

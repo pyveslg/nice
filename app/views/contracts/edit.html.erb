@@ -3,6 +3,5 @@
 <% elsif @contract.code == "WFC" %>
   <%= render "shared/wfc_form" %>
 <% else %>
-  <%= render "shared/cpi_form" %>
+  <%= render "shared/cpi_form", code: @contract.code %>
 <% end %>
-

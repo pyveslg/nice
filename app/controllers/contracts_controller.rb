@@ -26,6 +26,7 @@ class ContractsController < ApplicationController
       else
         @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
       end
+      @contract.client_type = contract_params[:client_type] == "Business" ? 1 : 0
       @contract.sessions = set_sessions
       @contract.frequency = set_frequency
     end
@@ -48,8 +49,13 @@ class ContractsController < ApplicationController
       @contract.start_from = @contract.access_fbp_hash[:start_from]
       @contract.end_at = @contract.access_fbp_hash[:end_at]
     else
+      @contract.client_type = contract_params[:client_type] == "Business" ? 1 : 0
       @contract.programme = Programmes::PROGRAMME.select{|programme| programme[:title] == contract_params[:programme]}[0][:id]
-      @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+      if @contract.code == "FUP"
+        @contract.hourly_rate = Fees::FUP_FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+      else
+        @contract.hourly_rate = Fees::FEES.select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
+      end
       @contract.sessions = set_sessions
       @contract.frequency = set_frequency
     end

@@ -104,8 +104,13 @@
     <table class="text-left">
       <tr>
         <td><i class="fa fa-eur" aria-hidden="true"></i> MONTANT TOTAL</td>
-        <td><b><%= @contract.total_amount %>€ TTC</b> (<%= @contract.total_amount.humanize %> euros), soit <%= @contract.set_price %>€ de l’heure.<br/>La TVA applicable au taux de 20% (<%= @contract.tva_amount %>€) est incluse dans ce montant.
-        </td>
+        <% if @contract.client_type  == 1 %>
+          <td><%= @contract.total_amount %>€ HT (<%= @contract.set_price %>€ HT de l’heure), soit un montant total de <b><%= @contract.total_amount + @contract.tva_amount.floor %>€ TTC</b> (<%= (@contract.total_amount + @contract.tva_amount.floor).humanize %> euros).<br/>La TVA applicable est au taux de 20% (<%= @contract.tva_amount %>€).
+          </td>
+        <% else %>
+          <td><b><%= @contract.total_amount %>€ TTC</b> (<%= @contract.total_amount.humanize %> euros), soit <%= @contract.set_price %>€ de l’heure.<br/>La TVA applicable au taux de 20% (<%= @contract.tva_amount %>€) est incluse dans ce montant.
+          </td>
+        <% end %>
       </tr>
       <tr>
         <td id="included">Y SONT INCLUS</td>
