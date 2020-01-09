@@ -3,7 +3,7 @@
   <img src="https://res.cloudinary.com/pywagon/image/upload/v1507113122/novexpat_fit_white_gcawfa.png" class="logo">
   <h1>CONTRAT #<span class="purple"><%= @contract.contract_number %></span><br/>
     POUR UNE FORMATION EN FRANÇAIS LANGUE ÉTRANGÈRE :<br/><br/>
-    <span class="purple"><%= @contract.set_fup_programme_title %><br/>
+    <span class="purple">1-ON-1 FRENCHUP PROGRAM<br/>
     PACK <%= @contract.duration %>H</span></h1>
 
   <div class="contacts">
@@ -47,7 +47,7 @@
 
     <p>En exécution du présent contrat, Novexpat s’engage à fournir au Stagiaire, l’action de formation suivante :</p>
 
-    <p class="text-center"><b>« <%= @contract.set_fup_programme_title %> »</b></p>
+    <p class="text-center"><b>« 1-on-1 FrenchUp Program (Français Langue Étrangère) »</b></p>
 
     <p>Cette formation n’entre pas dans le cadre de la Formation Professionnelle Continue tel que défini dans l’article L.6313-1 du code du travail.</p>
   </div>
@@ -58,7 +58,7 @@
     <table class="text-left">
       <tr>
         <td><i class="fa fa-bullseye" aria-hidden="true"></i> OBJECTIFS</td>
-        <td>Aider le Stagiaire à développer et consolider ses compétences de communication en français langue étrangère (FLE), attendues au <b>niveau <%= @contract.target %></b> du CERCL ainsi que ses connaissances et compréhensions de la culture française</td>
+        <td>Permettre au stagiaire visé par la formation, de développer et de consolider ses compétences de communication en français langue étrangère (<b>niveau <%= @contract.target %></b> du CERCL) qui lui seront immédiatement et significativement utiles et applicables dans un contexte socio-professionnel francophone.</td>
       </tr>
       <tr>
         <td><i class="fa fa-clock-o" aria-hidden="true"></i> DUREE</td>
@@ -73,9 +73,25 @@
         <td><%= render "contracts/rythme.html" %> </td>
       </tr>
       <tr>
+        <td><i class="fa fa-cogs" aria-hidden="true"></i> MODALITÉS</td>
+        <td>
+          <ul>
+            <li>
+              <b><%= @contract.sessions[0][0].to_i - 1 %> séances de <%= @contract.sessions[0][1] %>h</b>,
+              <% if @contract.sessions[1][0] != ""  %>
+                et <b><%= pluralize(@contract.sessions[1][0], "séance") %> de <%= @contract.sessions[1][1] %>h</b>,
+              <% end %>
+              en <b>face à face pédagogique et en présentiel</b> avec le professeur
+            </li>
+            <li><b>1 séance de <%= @contract.sessions[0][1] %>h d'évaluation finale</b> en face à face et en présentiel avec le professeur</li>
+            <li><b>Un accès en illimité à Neo</b>, la plateforme en ligne des cours (contenu et suivi des cours, exercices, ressources culturelles et linguistiques complémentaires)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
         <td><i class="fa fa-map-marker" aria-hidden="true"></i> LIEU</td>
         <td>
-          Au domicile du Stagiaire, dans des cafés ou dans des lieux d’intérêts culturels et pédagogiques à Paris ou à Saint-Germain-en-Laye. Le lieu devra être confirmé au moins 48h avant la tenue du cours.
+          Au bureau ou domicile du stagiaire, dans des cafés ou autres lieux d’intérêts pédagogiques à Paris ou à Saint-Germain-en-Laye. Le lieu devra être confirmé par écrit au moins 48h avant le cours.
         </td>
       </tr>
       <tr>
@@ -89,7 +105,7 @@
         </td>
       </tr>
     </table>
-    <p><em><abbr>*</abbr> Un programme détaillé de la formation peut être fourni sur simple demande écrite à Novexpat.</em></p>
+    <p><em><abbr>*</abbr> Un calendrier et un programme détaillés de la formation peuvent être fournis au Stagiaire sur simple demande écrite à Novexpat.</em></p>
   </div>
 
   <!-- ARTICLE 3 -->
@@ -104,18 +120,18 @@
     <table class="text-left">
       <tr>
         <td><i class="fa fa-eur" aria-hidden="true"></i> MONTANT TOTAL</td>
-        <% if @contract.client_type  == 1 %>
-          <td><%= @contract.total_amount %>€ HT (<%= @contract.set_price %>€ HT de l’heure), soit un montant total de <b><%= @contract.total_amount + @contract.tva_amount.floor %>€ TTC</b> (<%= (@contract.total_amount + @contract.tva_amount.floor).humanize %> euros).<br/>La TVA applicable est au taux de 20% (<%= @contract.tva_amount %>€).
+        <% if @contract.client_type %>
+          <td><b><%= @contract.total_amount.floor %>€ HT</b> (<%= @contract.set_price.fdiv(@contract.attendee_number).floor %>€ HT de l’heure), soit un montant total de <b>&nbsp;<%= @contract.total_amount + @contract.tva_amount.floor %>€ TTC</b> (<%= (@contract.total_amount + @contract.tva_amount.floor).humanize %> euros). La TVA applicable est au taux de 20% (<%= @contract.tva_amount %>€).
           </td>
         <% else %>
-          <td><b><%= @contract.total_amount %>€ TTC</b> (<%= @contract.total_amount.humanize %> euros), soit <%= @contract.set_price %>€ de l’heure.<br/>La TVA applicable au taux de 20% (<%= @contract.tva_amount %>€) est incluse dans ce montant.
+          <td><b><%= @contract.total_amount.floor %>€ TTC</b> (<%= @contract.total_amount.humanize %> euros), soit <%= @contract.set_price.fdiv(@contract.attendee_number).floor %>€ de l’heure.<br/>La TVA applicable au taux de 20% (<%= @contract.tva_amount %>€) est incluse dans ce montant.
           </td>
         <% end %>
       </tr>
       <tr>
         <td id="included">Y SONT INCLUS</td>
         <td>
-          L'ensemble des frais pédagogique et du matériel mis à disposition et jugé utile par le professeur, y compris <b>l’accès la plateforme NEO pendant au moins 1 an</b>.<br/>
+          L'ensemble des frais pédagogique et du matériel mis à disposition et jugé utile par le professeur, y compris <b>l’accès la plateforme NEO pendant au moins 1 an après l'issue de la formation</b>.<br/>
           Les frais de transports et de déplacement du professeur dans Paris ou proche banlieue.<br/>
           L’éventuelle collation du Stagiaire dans le cadre du cours reste à sa charge.
         </td>
@@ -125,18 +141,16 @@
         <td><%= render "echeance.html" %></td>
       </tr>
     </table>
-    <p>Une facture sera envoyée à chaque échéance, avec une copie de la feuille d’émargement sur laquelle figurera un décompte précis des heures prises et restantes.</p>
   </div>
-
-  <%= render "footer_pdf.html" %>
 </div>
 <div class="new-page third-page">
   <%= render "header_pdf.html", frompage: 3, topage: 3 %>
+  <p style="padding-top: 6px;">Une facture sera envoyée à chaque échéance avec un rappel des heures prises et restantes.</p>
   <!-- ARTICLE 5 -->
   <div class="article">
     <p class="blue"><b>Article 5 – Interruption, annulation ou report de la formation</b></p>
-    <p>En cas d’interruption souhaité du contrat en cours de formation, le Stagiaire reste redevable du montant total de la formation<b>&nbsp au prorata temporis des séances ayant effectivement eu lieu, augmenté de frais de dossier de 50€ TTC</b>. En cas de trop perçu, Novexpat effectuera un remboursement par virement bancaire, diminué des frais de dossier et, si applicable, des frais de change.</p>
-    <p>En cas d’annulation de la séance <b>moins de 48 heures à l’avance</b>, hors cas de force majeure dûment reconnue et justifiée, la totalité de la dite séance peut être réclamée au Stagiaire.</p>
+    <p>En cas d’interruption souhaité du contrat en cours de formation, le Stagiaire reste redevable du montant total de la formation<b>&nbsp; au prorata temporis des séances ayant effectivement eu lieu, augmenté de frais de dossier de 50€ TTC</b>. Dans ce cas, en cas de trop perçu, Novexpat effectuera un remboursement par virement bancaire, diminué des frais de dossier et, si applicable, des frais de change.</p>
+    <p>En cas d’annulation de la séance <b>moins de 48 heures à l’avance</b>, hors cas de force majeure dûment reconnue et justifiée, la totalité de la dite séance sera comptabilisée et décomptée du nombre total d'heures restantes de la formation.</p>
   </div>
 
   <!-- ARTICLE 6 -->
@@ -154,7 +168,8 @@
   <!-- ARTICLE 8 -->
   <div class="article">
     <p class="blue"><b>Article 8 – Durée de validité du contrat</b></p>
-    <p>Ce contrat et la prestation qu'il vise sont <b>&nbsp;valables pour une durée d'1 an, à partir de la date de début de la formation, soit jusqu'au <%= l(@contract.end_at, format: "%d %B %Y", locale: 'fr') %></b>. Si le nombre total d'heures prévues par ce contrat n'est pas atteint à cette date, les heures restantes dans la formation seront considérées comme pleinement dues et redevables par le client. À ce titre, Novexpat n'effectuera aucun remboursement.</p>
+    <% dur = (@contract.end_at - @contract.start_from).to_i.fdiv(365).round(1) %>
+    <p>Ce contrat et la prestation qu'il vise sont <b>&nbsp;valables pour une durée d'<%= pluralize(dur == 1 ? dur.to_i : dur, "an") %>, à partir de la date de début de la formation, soit jusqu'au <%= l(@contract.end_at, format: "%d %B %Y", locale: 'fr') %></b>. Si le nombre total d'heures prévues par ce contrat n'est pas atteint à cette date, les heures restantes dans la formation seront considérées comme pleinement dues et redevables par le client. À ce titre, Novexpat n'effectuera aucun remboursement.</p>
   </div>
 
   <!-- ARTICLE 9 -->
@@ -173,7 +188,7 @@
         </td>
         <td valign="top">
           <p><b>Pour Novexpat SAS</b></p>
-          <p>Madame Fabienne DEFAUX, Présidente</p>
+          <p>Fabienne Defaux<br/>Présidente</p>
         </td>
       </tr>
     </table>

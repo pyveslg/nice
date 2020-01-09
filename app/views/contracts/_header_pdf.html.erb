@@ -1,3 +1,7 @@
 <div class="header">
+  <% if @convention %>
+    <p>Convention Nº <%= @contract.contract_number %> - <%= @contract.set_programme_title.downcase.capitalize %> - <%= @contract.duration %>h - Page <%= frompage %>/<%= topage %></p>
+  <% else %>
     <p>Contrat <%= @contract.set_programme_title.downcase.capitalize %> - <%= @contract.duration %>h - <%= @contract.first_name %> <%= @contract.last_name %> - Page <%= frompage %>/<%= topage %></p>
+  <% end %>
 </div>

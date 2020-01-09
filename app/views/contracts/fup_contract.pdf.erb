@@ -1,1 +1,5 @@
-<%= render "fup_contract.html.erb" %>
+<% if @contract.ext_group %>
+  <%= render "mgfup_contract.html.erb" %>
+<% else %>
+  <%= render "fup_contract.html.erb" %>
+<% end %>

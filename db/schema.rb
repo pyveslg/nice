@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_155302) do
+ActiveRecord::Schema.define(version: 2019_12_11_113736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "contracts", force: :cascade do |t|
     t.integer "programme"
-    t.integer "client_type"
+    t.boolean "client_type", default: false
     t.integer "hourly_rate"
     t.date "start_from"
     t.date "end_at"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(version: 2019_04_17_155302) do
     t.string "code"
     t.integer "installment"
     t.boolean "cpi_on_top"
+    t.json "attendees", default: []
+    t.integer "attendee_number", default: 1
+    t.boolean "convention", default: false
+    t.text "convention_signee"
+    t.boolean "ext_group"
   end
 
 end

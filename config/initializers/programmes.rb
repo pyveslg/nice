@@ -77,21 +77,21 @@ module Programmes
       },
       {
         id: 2,
-        title: "FrenchBooster Programme - Mondays - Fall 2019",
+        title: "FrenchBooster Programme - Mondays - Winter 2020",
         code: "FBP",
-        start_from: Date.new(2019,9,30),
-        end_at: Date.new(2019,12,16),
-        second_payment: Date.new(2019,10,28),
-        third_payment: Date.new(2019,11,28)
+        start_from: Date.new(2020,1,27),
+        end_at: Date.new(2020,4,6),
+        second_payment: Date.new(2020,2,24),
+        third_payment: Date.new(2020,3,24)
       },
       {
         id: 3,
-        title: "FrenchBooster Programme - Saturdays - Fall 2019",
+        title: "FrenchBooster Programme - Saturdays - Winter 2020",
         code: "FBP",
-        start_from: Date.new(2019,10,5),
-        end_at: Date.new(2019,12,14),
-        second_payment: Date.new(2019,10,28),
-        third_payment: Date.new(2019,11,28)
+        start_from: Date.new(2020,1,25),
+        end_at: Date.new(2020,4,4),
+        second_payment: Date.new(2020,2,24),
+        third_payment: Date.new(2020,3,24)
       }
     ]
   end

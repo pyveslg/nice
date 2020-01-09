@@ -67,28 +67,27 @@ class Contract < ApplicationRecord
   end
 
   def contract_number
-    if code == "FBP" || "FBPI"
+    if code == "FBP" || code == "FBPI"
       "NOV-#{code}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
     else
-      if client_type == 0 || client_type.nil?
-        "NOV-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
-      else
-        "NOV-#{Programmes::PROGRAMME[programme][:code].upcase}-#{company[0,3].upcase}#{sign_date.strftime("%Y%m%d")}-0000#{Contract.contracts_count(sign_date, self)}"
-      end
+      "NOV#{"-E" if convention}-#{Programmes::PROGRAMME[programme][:code]}-#{sign_date.strftime("%Y%m%d")}-0#{Contract.contracts_count(sign_date, self)}"
     end
   end
 
   def set_programme_title
     if code == "FBP" || code == "FBPI"
       Programmes::FBP[programme - Programmes::FBP[0][:id]][:title].upcase
+    elsif code == "FUP"
+      "#{attendee_number}-ON-1 FRENCHUP PROGRAM"
     else
-      Programmes::PROGRAMME[programme][:title].upcase
+      "FACE-TO-FACE #{self.attendee_number}-ON-1 FRENCH CLASSES"
     end
   end
 
   def set_fup_programme_title
     fee = self.set_price
     case fee
+    when 58 then "1-ON-1 FRENCHUP PROGRAM"
     when 60 then "1-ON-1 FRENCHUP PROGRAM"
     when 63 then "2-ON-1 FRENCHUP PROGRAM"
     when 66 then "3-ON-1 FRENCHUP PROGRAM"
@@ -115,11 +114,15 @@ class Contract < ApplicationRecord
   end
 
   def total_amount
-    duration * set_price
+    if ext_group
+      (duration * (set_price + 6 * (attendees.length - 1))).fdiv(attendee_number) * attendees.length
+    else
+      self.attendee_number ? duration * (set_price + 6 * (attendee_number - 1))  : duration * set_price
+    end
   end
 
   def tva_amount
-    if self.client_type == 1
+    if self.client_type
       tva = self.total_amount * 1.2 * (1 - 1.fdiv(1.2))
       tva.round(1) == tva.floor ? tva.floor : tva.round(1)
     else

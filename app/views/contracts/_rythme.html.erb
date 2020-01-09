@@ -3,8 +3,8 @@
   et <b><%= pluralize(@contract.sessions[1][0], "séance") %> de <%= @contract.sessions[1][1] %>h</b>,
 <% end %>
 <% if @contract.frequency[1].to_i > 2 %>
-à raison de <b><%= @contract.frequency[0] %> fois toutes les <%= @contract.frequency[1] %> semaines</b>.
+à raison de <b><%= pluralize(@contract.frequency[0], "séance") %> toutes les <%= @contract.frequency[1] %> semaines</b>.
 <% else %>
-à raison de <b><%= @contract.frequency[0] %> fois par semaine</b>.
+à raison de <b><%= pluralize(@contract.frequency[0], "séance") %> par semaine</b>.
 <% end %>
-Le calendrier pourra être modifié en fonction des disponibilités, en commun accord avec la Stagiaire et le Professeur.
+Le calendrier pourra être modifié en fonction des disponibilités, en commun accord avec <%= @many ? "les stagiaires" : "le stagiaire" %> et le professeur.

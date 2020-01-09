@@ -9,7 +9,11 @@
 
   <ul>
     <% @contracts.each_with_index do |contract, index| %>
-      <li>[<%= index + 1 %>] <%= link_to contract.contract_number, contract_path(contract), target: "_blank" %> | <%= contract.first_name %> <%= contract.last_name.upcase %> | <%= contract.set_programme_title %> - created at <%= contract.created_at %> | <%= link_to "Edit", edit_contract_path(contract) %></li>
+      <% if contract.code == "FUP" && contract.ext_group %>
+        <li>[<%= index + 1 %>] <%= link_to contract.contract_number, contract_path(contract), target: "_blank" %> | <%= contract.attendees[0]["first_name"] %> <%= contract.attendees[0]["last_name"].upcase %> | <%= contract.set_programme_title %> - created at <%= contract.created_at %> | <%= link_to "Edit", edit_contract_path(contract, mg: true) %></li>
+      <% else %>
+        <li>[<%= index + 1 %>] <%= link_to contract.contract_number, contract_path(contract), target: "_blank" %> | <%= contract.first_name %> <%= contract.last_name.upcase %> | <%= contract.set_programme_title %> - created at <%= contract.created_at %> | <%= link_to "Edit", edit_contract_path(contract) %></li>
+      <% end %>
     <% end %>
   </ul>
 </div>

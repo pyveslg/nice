@@ -8,12 +8,14 @@
         <h3>About the programme</h3>
         <%= f.input :programme, as: :select, collection: Programmes::PROGRAMME.map{|prog| prog[:title]}, input_html: {class: "select2"} %>
         <%= f.input :client_type, as: :select, collection: Contract::CLIENT_TYPE.map{|client| client[:title]}, input_html: {class: "select2"} %>
-        <% if code == "FUP" %>
+        <% if @code == "FUP" %>
           <%= f.input :hourly_rate, as: :select, collection: Fees::FUP_FEES.map{|fee| fee[:title]}, input_html: {class: "select2"} %>
         <% else %>
           <%= f.input :hourly_rate, as: :select, collection: Fees::FEES.map{|fee| fee[:title]}, input_html: {class: "select2"} %>
         <% end %>
         <%= f.input :installment, as: :select, collection: [1, 2, 3, 4], input_html: {class: "select2"} %>
+        <%= f.input :attendee_number, as: :select, collection: (1..6), input_html: {class: "select2"} %>
+        <%= render 'shared/contract-attendees' %>
         <%= f.input :target, as: :select, collection: Contract::TARGET, input_html: {class: "select2"} %>
         <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS, input_html: {class: "select2"} %>
       </div>

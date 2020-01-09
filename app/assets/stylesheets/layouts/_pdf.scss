@@ -10,6 +10,10 @@
   color: $blue;
 }
 
+.black {
+  color: $black;
+}
+
 #pdf-content {
   background: white;
   font-family: 'Open Sans', sans-serif;
@@ -102,6 +106,19 @@ table {
     padding-left: 15px;
     list-style: square;
     margin-bottom: 0px;
+  }
+}
+
+.new-page.second-page table.attendees {
+  tr > td {
+    width: 50%;
+    padding: 5px 15px;
+    text-align: left;
+  }
+  p.detail-card-title {
+    margin: 0;
+    padding-top: 0;
+    font-weight: 400;
   }
 }
 

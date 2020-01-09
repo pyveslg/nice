@@ -1,7 +1,5 @@
-<% if !params[:code].nil? && params[:code] == "FBP" %>
-  <%= render "shared/fbp_form" %>
-<% elsif !params[:code].nil? && params[:code] == "WFC" %>
-  <%= render "shared/wfc_form" %>
-<% else %>
-  <%= render "shared/cpi_form", code: params[:code] %>
-<% end %>
+<%= render "shared/fbp_form" if @code == "FBP" %>
+<%= render "shared/wfc_form" if @code == "WFC" %>
+<%= render "shared/cpi_form" if @code == "CPI" %>
+<%= render "shared/fup_form" if !@mg && @code == "FUP" %>
+<%= render "shared/mgfup_form" if @mg && @code == "FUP" %>

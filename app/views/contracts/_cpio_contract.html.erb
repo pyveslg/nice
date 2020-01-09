@@ -52,9 +52,23 @@
     <p>Cette formation n’entre pas dans le cadre de la Formation Professionnelle Continue tel que défini dans l’article L.6313-1 du code du travail.</p>
   </div>
 
+  <% if @many %>
+  <!-- ARTICLE PARTICIPANTS -->
+    <div class="article">
+      <p class="blue"><b>Article <%= @article %> – Stagiaires participants à l’action de formation <abbr>*</abbr></b></p>
+      <table>
+        <%= @contract.attendees.each_with_index do |attendee, index| %>
+          <tr>
+            <td><%= index %></td>
+            <td><%= attendee[1][:last_name].upcase %> <%= attendee[1][:first_name] %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
   <!-- ARTICLE 2 -->
   <div class="article">
-    <p class="blue"><b>Article 2 – Nature et caractéristiques de l’action de formation <abbr>*</abbr></b></p>
+    <p class="blue"><b>Article <%= @article + 1 %> – Nature et caractéristiques de l’action de formation <abbr>*</abbr></b></p>
     <table class="text-left">
       <tr>
         <td><i class="fa fa-bullseye" aria-hidden="true"></i> OBJECTIFS</td>
@@ -94,13 +108,13 @@
 
   <!-- ARTICLE 3 -->
   <div class="article">
-    <p class="blue"><b>Article 3 – Droit de rétractation</b></p>
+    <p class="blue"><b>Article <%= @article + 2 %> – Droit de rétractation</b></p>
     <p>À compter de la date de signature du présent contrat, le Stagiaire dispose d’un délai de 14 jours pour se rétracter sans qu’aucune somme de dédommagement ni justificatif du motif de rétraction ne puisse lui être exigé. Lorsque le délai des quatorze jours expire un samedi, un dimanche ou un jour férié ou chômé, il est prorogé jusqu'au premier jour ouvré suivant. Le Stagiaire souhaitant faire usage de son droit de rétractation est tenu de le notifier, dans les délais légaux indiqués ci-dessus, par écrit et par voie postale, par lettre recommandée avec accusé de réception, à l’adresse suivante : Novexpat, à l’attention de Mr. Pierre-Yves Le Guennec, 58 rue de la Fontaine au Roi, 75011 Paris, France.<br/>Si des cours ont été donnés, avec l'accord du Stagiaire, durant la période de rétractation et qu'il est finalement fait usage du droit de rétractation, le Stagiaire reste redevable du montant total de la formation au prorata des séances ayant effectivement eu lieu.</p>
   </div>
 
   <!-- ARTICLE 4 -->
   <div class="article">
-    <p class="blue"><b>Article 4 – Dispositions financières</b></p>
+    <p class="blue"><b>Article <%= @article + 3 %> – Dispositions financières</b></p>
     <table class="text-left">
       <tr>
         <td><i class="fa fa-eur" aria-hidden="true"></i> MONTANT TOTAL</td>
@@ -128,20 +142,20 @@
   <%= render "header_pdf.html", frompage: 3, topage: 3 %>
   <!-- ARTICLE 5 -->
   <div class="article">
-    <p class="blue"><b>Article 5 – Interruption, annulation ou report de la formation</b></p>
+    <p class="blue"><b>Article <%= @article + 4 %> – Interruption, annulation ou report de la formation</b></p>
     <p>En cas d’interruption souhaité du contrat en cours de formation, le client reste redevable du montant total de la formation<b>&nbsp au prorata des séances ayant effectivement eu lieu</b>. Le montant horaire de chacune des séances ayant effectivement eu lieu sera revalorisé à cinquante cinq euros (55€), tarif applicable pour les formations de moins de 20 heures. Dans tous les cas, le montant remboursable au Stagiaire ne pourra excéder 70% du montant total de la formation.</p>
     <p>En cas d’annulation de la séance <b>moins de 48 heures à l’avance</b>, hors cas de force majeure dûment reconnue et justifiée, la totalité de la dite séance peut être réclamée au Stagiaire.</p>
   </div>
 
   <!-- ARTICLE 6 -->
   <div class="article">
-    <p class="blue"><b>Article 6 – Propriété intellectuelle</b></p>
+    <p class="blue"><b>Article <%= @article + 5 %> – Propriété intellectuelle</b></p>
     <p>Les contenus et les supports pédagogiques utilisés lors de la formation ou sur la plateforme NEO ainsi que les partis pris et la démarche pédagogique relèvent de la propriété intellectuelle légale de Novexpat et ne peuvent être réutilisés ou diffusés sans l’autorisation expresse de l’un des dirigeants de Novexpat.</p>
   </div>
 
   <!-- ARTICLE 7 -->
   <div class="article">
-    <p class="blue"><b>Article 7 – Cas de différend</b></p>
+    <p class="blue"><b>Article <%= @article + 6 %> – Cas de différend</b></p>
     <p>Si une constatation ou un différend n’ont pu être réglés à l’amiable, le tribunal de Paris sera seul compétent pour régler le litige.</p>
   </div>
 
