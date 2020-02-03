@@ -1,4 +1,4 @@
-<% if @contract.attendees %>
+<% if !@contract.attendees.empty? %>
   <div class="attendees-form">
     <% @contract.attendees.each_with_index do |attendee, index| %>
       <div class="form-for-attendees">

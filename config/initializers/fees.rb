@@ -8,13 +8,13 @@ module Fees
     },
     {
       id: 1,
-      title: "PACK 30H - 63€",
-      value: 63
+      title: "PACK 30H - 66€",
+      value: 66
     },
     {
       id: 2,
-      title: "PACK 30H - 66€",
-      value: 66
+      title: "PACK 30H - 72€",
+      value: 72
     }
   ]
 

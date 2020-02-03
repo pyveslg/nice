@@ -89,8 +89,8 @@ class Contract < ApplicationRecord
     case fee
     when 58 then "1-ON-1 FRENCHUP PROGRAM"
     when 60 then "1-ON-1 FRENCHUP PROGRAM"
-    when 63 then "2-ON-1 FRENCHUP PROGRAM"
-    when 66 then "3-ON-1 FRENCHUP PROGRAM"
+    when 66 then "2-ON-1 FRENCHUP PROGRAM"
+    when 72 then "3-ON-1 FRENCHUP PROGRAM"
     end
   end
 
