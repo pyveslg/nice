@@ -1,16 +1,15 @@
 <div class="title">
-  <h1 class="main-linearize">1-on-1 FrenchUp Courses | <span class="rosify">Generate Contract</span></h1>
+  <h1 class="main-linearize">Mini-group Bespoke French Classes | <span class="rosify">Generate Contract</span></h1>
 </div>
 <div class="container">
   <div class="col-xs-12 col-sm-6">
     <%= simple_form_for (@contract) do |f| %>
       <div class="about-programme">
         <h3>About the programme</h3>
-        <%= f.input :programme, input_html: {value: "1-on-1 FrenchUp Program"}, as: :hidden %>
-        <%= f.input :hourly_rate, as: :select, collection: Fees::FUP_FEES.map{|fee| fee[:title]}, input_html: {class: "select2"}, selected: (@contract.hourly_rate ? Fees::FUP_FEES[@contract.hourly_rate][:title] : nil) || Fees::FUP_FEES[0][:title]  %>
+        <%= f.input :programme, input_html: {value: "Bespoke French Classes"}, as: :hidden %>
+        <%= f.input :ext_group, input_html: {value: true}, as: :hidden %>
+        <%= f.input :hourly_rate, as: :select, collection: Fees::CPI_FEES.map{|fee| fee[:title]}, input_html: {class: "select2"}, selected: (@contract.hourly_rate ? Fees::CPI_FEES[@contract.hourly_rate][:title] : nil) || Fees::CPI_FEES[0][:title]  %>
         <%= f.input :client_type, label: "Paid by Business?" %>
-        <%= f.input :direct_payment, as: :boolean, label: "Paid directly by Third Party ?", input_html: {data: {target: "contract.check", action: "contract#checkPayerValidate"}} %>
-        <%= f.input :payer, input_html: {rows: 4, value: @contract.payer || "**ALTEDIA SA**, société anonyme au capital de 383 507 453 euros ayant son siège social sis 3 avenue Hoche 75008 Paris, enregistrée sous le Nº SIREN 552 003 261, "}, wrapper_html: {class: "hidden", data: {target: "contract.payer"}}  %>
         <%= f.input :installment, as: :select, collection: [1, 2, 3, 4], input_html: {class: "select2"} %>
         <%= f.input :target, as: :select, collection: Contract::TARGET, input_html: {class: "select2"} %>
         <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS, selected: Teachers::TEACHERS[0], input_html: {class: "select2"} %>
@@ -49,7 +48,7 @@
       </div>
       <div class="contact-details">
         <h3>About the contractor</h3>
-        <%= f.input :convention, input_html: {data: {target: "contract.check", action: "contract#checkConventionValidate"}} %>
+        <%= f.input :convention, input_html: {data: {target: "contract.check", action: "contract#checkValidate"}} %>
         <%= f.input :convention_signee, input_html: {rows: 4, value: @contract.convention_signee || "**BANQUE NEUFLIZE OBC**, société anonyme au capital de 383 507 453 euros ayant son siège social sis 3 avenue Hoche 75008 Paris, enregistrée sous le Nº SIREN 552 003 261, représentée par Mme Delphine Chinellato, responsable RH,"}, wrapper_html: {class: "hidden", data: {target: "contract.conventionSignee"}} %>
         <%= f.input :attendee_number, as: :select, collection: (1..6), input_html: {class: "select2"} %>
         <%= render 'shared/contract-attendees' %>

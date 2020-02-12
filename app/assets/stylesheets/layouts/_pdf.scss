@@ -118,7 +118,7 @@ table {
   p.detail-card-title {
     margin: 0;
     padding-top: 0;
-    font-weight: 400;
+    font-weight: 300;
   }
 }
 
@@ -157,6 +157,7 @@ table {
 #fab-signature {
   width: 90px;
   position: absolute;
+  bottom: -100px;
   right: 125px;
   z-index: 1;
 }
@@ -165,7 +166,7 @@ table {
   width: 30%;
   position: absolute;
   right: 80px;
-  bottom: -140px;
+  bottom: -80px;
   transform: rotateZ(-5deg);
 }
 

@@ -9,7 +9,8 @@
         <%= f.input :programme, input_html: {value: "1-on-1 FrenchUp Program"}, as: :hidden %>
         <%= f.input :ext_group, input_html: {value: true}, as: :hidden %>
         <%= f.input :hourly_rate, as: :select, collection: Fees::FUP_FEES.map{|fee| fee[:title]}, input_html: {class: "select2"}, selected: (@contract.hourly_rate ? Fees::FUP_FEES[@contract.hourly_rate][:title] : nil) || Fees::FUP_FEES[0][:title]  %>
-        <%= f.input :client_type, label: "Paid by Business?" %>
+        <%= f.input :client_type, label: "Paid by Third Party?" %>
+        <%= f.input :direct_payment, label: "Paid directly by Third Party" %>
         <%= f.input :installment, as: :select, collection: [1, 2, 3, 4], input_html: {class: "select2"} %>
         <%= f.input :target, as: :select, collection: Contract::TARGET, input_html: {class: "select2"} %>
         <%= f.input :teacher, as: :select, collection: Teachers::TEACHERS, selected: Teachers::TEACHERS[0], input_html: {class: "select2"} %>

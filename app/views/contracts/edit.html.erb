@@ -1,5 +1,6 @@
 <%= render "shared/fbp_form" if @code == "FBP" || @code == "FBPI" %>
 <%= render "shared/wfc_form" if @code == "WFC" %>
-<%= render "shared/cpi_form" if @code == "CPI" %>
+<%= render "shared/cpi_form" if !@mg && @code == "CPI" %>
+<%= render "shared/mgcpi_form" if @mg && @code == "CPI" %>
 <%= render "shared/fup_form" if !@mg && @code == "FUP" %>
 <%= render "shared/mgfup_form" if @mg && @code == "FUP" %>

@@ -13,7 +13,7 @@ module Programmes
     PROGRAMME = [
       {
         id: 0,
-        title: "Face-to-Face 1-on-1 French Classes",
+        title: "Bespoke French Classes",
         code: "CPI"
       },
       {

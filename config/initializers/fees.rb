@@ -18,12 +18,17 @@ module Fees
     }
   ]
 
-  FEES = [
+  CPI_FEES = [
     {
       id: 0,
-      title: "1-ON-1 - 63€",
+      title: "Full 1-on-1 Price - 63€",
       value: 63
-    }
+    },
+    {
+      id: 1,
+      title: "Discount 1-on-1 Price - 60€",
+      value: 60
+    },
   ]
 
   FBP_FEES = [

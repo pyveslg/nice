@@ -7,10 +7,8 @@
 <% if @contract.code == "CPIO" %>
   <%= render "cpio_contract.html.erb" %>
 <% end %>
-<% if @contract.code == "CPI" %>
-  <%= render "cpi_contract.html.erb" %>
-<% end %>
-
+<%= render "cpi_contract.html.erb" if @contract.code == "CPI" && !@contract.ext_group %>
+<%= render "mgcpi_contract.html.erb" if @contract.code == "CPI" && @contract.ext_group %>
 <%= render "fup_contract.html.erb" if @contract.code == "FUP" && !@contract.ext_group %>
 <%= render "mgfup_contract.html.erb" if @contract.code == "FUP" && @contract.ext_group %>
 

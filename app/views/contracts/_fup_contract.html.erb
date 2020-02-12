@@ -101,7 +101,7 @@
       <tr>
         <td><i class="fa fa-check-circle-o" aria-hidden="true"></i> SUIVI</td>
         <td>
-          Feuille d’émargement à signer à chaque séance par le Stagiaire et le professeur, et attestation de suivi délivrée en fin de formation.
+          Feuille d’émargement à signer à chaque séance par le Stagiaire et le professeur, et attestation de suivi délivrée en fin de formation sur demande.
         </td>
       </tr>
     </table>
@@ -146,10 +146,15 @@
 <div class="new-page third-page">
   <%= render "header_pdf.html", frompage: 3, topage: 3 %>
   <p style="padding-top: 6px;">Une facture sera envoyée à chaque échéance avec un rappel des heures prises et restantes.</p>
+  <% if @contract.payer %>
+    <p>Les versements seront établis directement par <%= @contract.payer %>. La validation du devis joint à ce contrat par ce tiers financeur ou tout autre engagement explicite délivré par ce dernier est nécessaire pour la validation définitive du contrat et le démarrage de la formation.
+    </p>
+    <p>La société Novexpat, en contrepartie des sommes reçues, s’engage à réaliser toutes les actions prévues dans le cadre du présent contrat et à fournir sur demande tout document et toute pièce de nature à justifier la réalité et la validité des dépenses de formation engagées à ce titre.</p>
+  <% end %>
   <!-- ARTICLE 5 -->
   <div class="article">
     <p class="blue"><b>Article 5 – Interruption, annulation ou report de la formation</b></p>
-    <p>En cas d’interruption souhaité du contrat en cours de formation, le Stagiaire reste redevable du montant total de la formation<b>&nbsp; au prorata temporis des séances ayant effectivement eu lieu, augmenté de frais de dossier de 50€ TTC</b>. Dans ce cas, en cas de trop perçu, Novexpat effectuera un remboursement par virement bancaire, diminué des frais de dossier et, si applicable, des frais de change.</p>
+    <p>En cas d’interruption souhaité du contrat en cours de formation, le Stagiaire reste redevable du montant total de la formation<b>&nbsp; au prorata temporis des séances ayant effectivement eu lieu, augmenté de frais de dossier de 50€ TTC</b>. Dans ce cas, en cas de trop perçu, Novexpat effectuera un remboursement<%= " au payeur" if @contract.payer %> par virement bancaire, diminué des frais de dossier et, si applicable, des frais de change.</p>
     <p>En cas d’annulation de la séance <b>moins de 48 heures à l’avance</b>, hors cas de force majeure dûment reconnue et justifiée, la totalité de la dite séance sera comptabilisée et décomptée du nombre total d'heures restantes de la formation.</p>
   </div>
 

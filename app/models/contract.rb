@@ -61,6 +61,9 @@ class Contract < ApplicationRecord
   def payment_3
   end
 
+  def direct_payment
+  end
+
   def self.contracts_count(date, contract)
     contracts = Contract.all.where("sign_date = ?", date)
     contracts.empty? ? 1 : contracts.find_index(contract) + 1
@@ -106,7 +109,7 @@ class Contract < ApplicationRecord
   end
 
   def set_price
-    self.code == "FUP" ? Fees::FUP_FEES[hourly_rate][:value] : Fees::FEES[hourly_rate][:value]
+    Fees.const_get("#{self.code}_FEES")[hourly_rate][:value]
   end
 
   def set_fbp_price

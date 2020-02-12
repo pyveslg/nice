@@ -1,2 +1,5 @@
-<%= render "cpi_contract.html" %>
-
+<% if @contract.ext_group %>
+  <%= render "mgcpi_contract.html.erb" %>
+<% else %>
+  <%= render "cpi_contract.html.erb" %>
+<% end %>
