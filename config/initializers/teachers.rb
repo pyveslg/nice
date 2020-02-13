@@ -1,3 +1,3 @@
 module Teachers
-  TEACHERS = ["Fabienne DEFAUX", "Claire RICHARD", "Stéphanie LAABAN", "Noémie LIOT", "Marion PICHENOT"]
+  TEACHERS = ["Fabienne DEFAUX", "Claire RICHARD", "Audrey LEPRÊTRE", "Noémie LIOT", "Marion PICHENOT", "Lily CHAAR"]
 end

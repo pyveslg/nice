@@ -37,7 +37,7 @@ class Contract < ApplicationRecord
     }
   ]
 
-  TARGET = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2", "B2.1", "B2.2", "C1.1", "C1.2"]
+  TARGET = ["A1.1", "A1.2", "A1", "A2.1", "A2.2", "A2", "B1.1", "B1.2", "B1", "B2.1", "B2.2", "B2", "C1.1", "C1.2", "C1"]
 
 
   def hours_by_sessions
@@ -59,9 +59,6 @@ class Contract < ApplicationRecord
   end
 
   def payment_3
-  end
-
-  def direct_payment
   end
 
   def self.contracts_count(date, contract)
