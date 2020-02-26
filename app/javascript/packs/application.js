@@ -14,15 +14,13 @@ import "flatpickr/dist/themes/airbnb.css";
 import 'select2';
 import 'select2/dist/css/select2.css';
 import { initAttendeesForm } from '../components/attendees';
+import { initDatePicker, initTimePicker } from '../components/datepicker';
 
 
-const datepickers = document.querySelectorAll(".datepicker");
-datepickers.forEach((datepicker) => {
-  flatpickr(datepicker, {
-    // plugins: [new confirmDatePlugin({})],
-    locale: "fr",
-    altInput: true
-  })
-})
 
+
+
+initDatePicker();
+initTimePicker();
+global.initTimePicker = initTimePicker;
 initAttendeesForm();

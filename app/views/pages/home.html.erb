@@ -11,7 +11,13 @@
     <li><%= link_to "Weekly French Classes", new_contract_path(code: "WFC") %></li>
   </ul>
 
+  <ul>
+    <li>Quote for Bespoke French Classes: <%= link_to "Individual", new_quote_path(code: "CPI", business: false) %> | <%= link_to "Business", new_quote_path(code: "CPI", business: true) %></li>
+  </ul>
+
 
   <%= link_to "See All contracts", contracts_path %>
+  <p>Règlement intérieur: <%= link_to "html", regint_path, target: "_blank" %> | <%= link_to "pdf", regint_path(format: :pdf), target: "_blank" %></p>
+
 </div>
 

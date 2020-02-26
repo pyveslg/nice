@@ -17,6 +17,7 @@ class ContractsController < ApplicationController
 
   def create
     @contract = Contract.new(contract_params)
+    @contract.payer = "" if !@contract.direct_payment
     @contract.attendees = match_attendees(contract_params[:attendees])
     @contract.payment_condition = 3 if inter_params[:payment_3].to_i == 1
     @contract.programme = check_which_programme[:id]
@@ -44,6 +45,7 @@ class ContractsController < ApplicationController
 
   def update
     @contract.update(contract_params)
+    @contract.payer = "" if !@contract.direct_payment
     @contract.attendees = match_attendees(contract_params[:attendees])
     @contract.payment_condition = 3 if inter_params[:payment_3].to_i == 1
     @contract.hourly_rate = Fees.const_get("#{@contract.code}_FEES").select{|fee| fee[:title] == contract_params[:hourly_rate]}[0][:id]
@@ -127,12 +129,12 @@ class ContractsController < ApplicationController
   end
 
   def contract_params
-    params.require(:contract).permit(:payer, :programme, :ext_group, :attendee_number, :convention, :convention_signee, :cpi_on_top, :client_type, :hourly_rate, :start_from, :end_at, :target, :teacher, :sign_date, :first_name, :last_name, :tel, :email, :address, :zipcode, :city, :installment, attendees: [:first_name, :last_name, :email, :position])
+    params.require(:contract).permit(:direct_payment, :payer, :programme, :ext_group, :attendee_number, :convention, :convention_signee, :cpi_on_top, :client_type, :hourly_rate, :start_from, :end_at, :target, :teacher, :sign_date, :first_name, :last_name, :tel, :email, :address, :zipcode, :city, :installment, attendees: [:first_name, :last_name, :email, :position])
   end
 
 
   def inter_params
-    params.require(:contract).permit(:direct_payment, :payment_3, :number_of_weeks, :hours_by_sessions, :number_of_sessions, :number_of_classes, :hours_by_sessions_2, :number_of_sessions_2)
+    params.require(:contract).permit(:payment_3, :number_of_weeks, :hours_by_sessions, :number_of_sessions, :number_of_classes, :hours_by_sessions_2, :number_of_sessions_2)
   end
 
   def check_which_programme

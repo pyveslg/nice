@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_172515) do
+ActiveRecord::Schema.define(version: 2020_02_24_175229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,46 @@ ActiveRecord::Schema.define(version: 2020_02_12_172515) do
     t.boolean "convention", default: false
     t.text "convention_signee"
     t.boolean "ext_group"
+    t.boolean "direct_payment", default: false
     t.text "payer"
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.integer "programme"
+    t.string "code"
+    t.boolean "client_is_business", default: false
+    t.integer "number_of_participants"
+    t.json "participants", default: []
+    t.date "start_from"
+    t.date "end_at"
+    t.float "hours"
+    t.json "sessions", default: []
+    t.json "frequency", default: []
+    t.string "day_of_classes", default: [], array: true
+    t.boolean "schedule_is_defined", default: false
+    t.string "timeslots", default: [], array: true
+    t.string "schedules", default: [], array: true
+    t.string "client_first_name"
+    t.string "client_last_name"
+    t.string "client_tel"
+    t.string "client_email"
+    t.string "client_address"
+    t.string "client_zipcode"
+    t.string "client_city"
+    t.string "company_name"
+    t.string "company_address"
+    t.string "company_zipcode_string"
+    t.string "company_siret"
+    t.string "company_city"
+    t.integer "hourly_rate"
+    t.integer "payment_condition"
+    t.integer "installment"
+    t.string "level_target"
+    t.text "content"
+    t.boolean "museum", default: false
+    t.boolean "access_to_neo", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

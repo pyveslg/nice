@@ -1,0 +1,119 @@
+.reg-top {
+  border: none;
+  margin-top: 1em;
+  margin-bottom: 0px;
+  td {
+    border: none;
+  }
+  td:first-child {
+    width: 30%;
+  }
+  img {
+    width: 100px;
+  }
+  td:last-child {
+    text-align: left;
+    padding: 1em;
+  }
+  h3, p {
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+    color: $parma;
+  }
+  h3 {
+    font-size: 2.1em;
+  }
+  p {
+    font-size: 1.4em;
+  }
+}
+
+.regint .explanation {
+  padding: 2.5em 0px;
+  text-align: justify;
+  font-style: italic;
+  color: $parma;
+  p {
+    border-left: 4px solid $turquoise;
+    padding-left: 1em;
+  }
+}
+
+.regint .two-columns {
+  border: none;
+  td {
+    border: none;
+    vertical-align: top;
+  }
+  td:first-child {
+    padding-right: 1em;
+  }
+  td:last-child {
+    padding-left: 1em;
+  }
+  text-align: justify;
+  #preambule {
+    margin-top: 0px;
+  }
+}
+
+.regint h5 {
+  font-size: 1em;
+  font-weight: 700;
+  color: $parma;
+  margin-bottom: 5px;
+}
+
+.regint h6 {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: $rose;
+  margin-bottom: 5px;
+}
+
+.regint p, .regint li {
+  font-size: .9em;
+  margin: 0;
+}
+
+.regint ul {
+  margin-bottom: 0px;
+  list-style: square;
+}
+
+.regint #signature {
+  position: relative;
+  padding-left: 5em;
+  margin-top: 4em;
+  #tampon, #fab-signature {
+    bottom: unset;
+  }
+  #tampon {
+    width: 225px;
+    top: 60px;
+  }
+  #fab-signature {
+    top: 35px;
+  }
+}
+
+.regint .table-footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border: none;
+  td {
+    border: none;
+  }
+  img {
+    width: 60px;
+  }
+  td:first-child {
+    text-align: right;
+    padding-right: 15px;
+  }
+  td:last-child {
+    width: 90px;
+  }
+}

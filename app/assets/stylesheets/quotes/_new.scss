@@ -1,0 +1,92 @@
+/// PACKAGE HOURS
+#programme-nbhours {
+  color: $rose;
+  font-weight: bold;
+}
+
+/// PACKAGE PACE
+.pace-option {
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  grid-gap: 1em;
+  margin: 0.5em 0 1em;
+}
+
+.add-pace-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  i {
+    font-size: 20px;
+    opacity: 0.7;
+  }
+  .fa-minus-circle {
+    color: $pro-red;
+  }
+  .fa-plus-circle {
+    color: $parma;
+  }
+}
+
+.sessions-input,
+.duration-input {
+  display: flex;
+  align-items: center;
+  p {
+    padding-left: 1em;
+    margin-bottom: 0;
+    flex: 1 0 50%;
+  }
+}
+
+
+/// PACKAGE FREQUENCY
+#package-frequency {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 1em;
+  }
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+/// PREFERRED DAYS
+.preferred-days {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: .8em;
+}
+
+.day-check {
+  text-align: center;
+  background: $parma;
+  padding: 10px 15px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.day-check.checked {
+  background: $rose;
+}
+
+
+/// PREFERRED TIMESLOTS
+.timeslots-option {
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  grid-gap: 1em;
+  margin: 0.5em 0 1em;
+}
+
+.timing-selector {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+    padding-right: 1em;
+  }
+}

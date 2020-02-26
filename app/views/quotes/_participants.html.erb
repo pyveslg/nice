@@ -1,0 +1,20 @@
+<% if !@quote.participants.nil? && !@quote.participants.empty? %>
+  <div id="attendees-form">
+    <% @quote.participants.each_with_index do |participant, index| %>
+      <div class="form-for-attendees">
+        <div class="form-group string required quote_participants_first_name form-group-valid">
+          <input class="form-control is-valid string required" type="text" value="<%= participant["first_name"] %>" name="quote[participants][<%= index %>][first_name]" id="quote_participants_<%= index %>_first_name" placeholder="Prénom(s)">
+        </div>
+        <div class="form-group string required quote_participants_last_name form-group-valid">
+          <input class="form-control is-valid string required" type="text" value="<%= participant["last_name"] %>" name="quote[participants][<%= index %>][last_name]" id="quote_participants_<%= index %>_last_name" placeholder="Nom">
+        </div>
+        <div class="form-group string required quote_participants_position form-group-valid">
+          <input class="form-control is-valid string required" type="text" value="<%= participant["position"] %>" name="quote[participants][<%= index %>][position]" id="quote_participants_<%= index %>_position" placeholder="Fonction">
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div id="attendees-form">
+  </div>
+<% end %>

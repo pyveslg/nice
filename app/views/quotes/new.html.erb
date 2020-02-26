@@ -1,0 +1,82 @@
+<div class="container" data-controller="quote">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+    <%= simple_form_for(@quote) do |f| %>
+      <div class="about-programme">
+        <h3>About the client</h3>
+        <% if !@quote.client_is_business %>
+          <div class="form-row">
+            <div class="col-sm-6">
+              <%= f.input :client_first_name, label: "First name" %>
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :client_last_name, label: "Last name" %>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-6">
+              <%= f.input :client_tel, label: "Phone" %>
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :client_email, label: "E-mail" %>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-xs-12"><%= f.input :client_address, label: "Address" %></div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-6">
+              <%= f.input :client_zipcode, label: "Zipcode" %>
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :client_city, label: "City" %>
+            </div>
+          </div>
+        <% else %>
+          <%= f.input :company_name %>
+          <%= f.input :company_siret %>
+          <%= f.input :company_address %>
+          <%= f.input :company_zipcode_string %>
+          <%= f.input :company_city %>
+        <% end %>
+
+        <h3>About the participants</h3>
+        <%= f.input :number_of_participants, collection: [1, 2, 3, 4], input_html: {data:{action: 'change->quote#initParticipants'}} %>
+        <%= render 'participants' %>
+
+        <%= f.input :programme, input_html: {value: "1-on-1 Bespoke French classes"}, as: :hidden %>
+        <div class="about-programme">
+          <h3>Programme Validity Timeframe</h3>
+          <div class="col-xs-6">
+            <%= f.input :start_from, as: :string, input_html: {class: "datepicker", data: {action: 'change->quote#generateCalendar'}} %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :end_at, as: :string, input_html: {class: "datepicker", data: {action: 'change->quote#generateCalendar'}} %>
+          </div>
+          <h3>Programme Duration, Split & Frequency</h3>
+          <h6>Package duration: <span data-target="quote.hours" id="programme-nbhours"><%= @quote.hours || 0 %></span> h</h6>
+          <%= f.input :hours, as: :hidden %>
+          <h6>Package sessions split</h6>
+          <%= f.input :sessions, as: :hidden %>
+          <%= render 'package_pace' %>
+          <h6>Package sessions frequency</h6>
+          <%= f.input :frequency, as: :hidden, input_html: {data: {target: 'quote.frequency'}} %>
+          <%= render 'package_frequency' %>
+          <h6>Preferred Days</h6>
+          <%= f.input :day_of_classes, as: :hidden, input_html: {data: {target: 'quote.days'}}, label: false %>
+          <%= render 'preferred_days' %>
+          <h6>Preferred Time slots</h6>
+          <%= f.input :timeslots, input_html: {data: {target: 'quote.timeslots'}}, label: false %>
+          <%= render 'package_timeslots' %>
+        </div>
+        <div class="forecast-calendar">
+          <h3>Programme Forecast Calendar</h3>
+          <ul id="quote-schedules">
+
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
