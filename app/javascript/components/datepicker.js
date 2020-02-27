@@ -26,6 +26,21 @@ const initTimePicker = () => {
   })
 }
 
+const initDateTimePicker = () => {
+  const datetimepickers = document.querySelectorAll(".datetimepicker");
+  datetimepickers.forEach((datetimepicker) => {
+    flatpickr(datetimepicker, {
+      locale: "fr",
+      altInput: true,
+      enableTime: true,
+      altFormat: "D F j, Y, H:i",
+      minTime: "07:00",
+      maxTime: "21:00",
+      time_24hr: true
+    })
+  })
+}
 
-export { initDatePicker, initTimePicker };
+
+export { initDatePicker, initTimePicker, initDateTimePicker };
 

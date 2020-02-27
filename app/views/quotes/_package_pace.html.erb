@@ -1,24 +1,48 @@
 <div id="programme-pace">
-  <div class="pace-option" data-target="quote.pace">
-    <div class="sessions-input string optional quote_number_of_sessions" data-action="change->quote#computeHoursAndSessions">
-      <input class="form-control string optional" placeholder="20" type="text" name="quote[number_of_sessions]" id="quote_number_of_sessions_0">
-      <p>sessions de</p>
+  <% if @quote.sessions.empty? %>
+    <div class="pace-option" data-target="quote.pace">
+      <div class="sessions-input string optional quote_sessions_number_of_sessions" data-action="change->quote#computeHoursAndSessions">
+        <input class="form-control string optional" placeholder="20" type="text" name="quote[sessions][0][number_of_sessions]" id="quote_sessions_0_number_of_sessions">
+        <p>sessions de</p>
+      </div>
+      <div class="duration-input select optional quote_sessions_hours_by_sessions" data-action="change->quote#computeHoursAndSessions">
+        <select class="form-control select optional" name="quote[sessions][0][hours_per_session]" id="quote_sessions_0_hours_per_session">
+          <option value="1">1</option>
+          <option value="1.25">1.25</option>
+          <option value="1.5" selected>1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+        </select>
+        <p>heures</p>
+      </div>
+      <div class="add-pace-option" data-action="click->quote#addPaceOption">
+        <i class="fa fa-plus-circle"></i>
+      </div>
     </div>
-    <div class="duration-input select optional quote_hours_by_sessions" data-action="change->quote#computeHoursAndSessions">
-      <select class="form-control select optional" name="quote[hours_by_sessions]" id="quote_hours_by_sessions_0">
-        <option value="1">1</option>
-        <option value="1.25">1.25</option>
-        <option selected="selected" value="1.5">1.5</option>
-        <option value="2">2</option>
-        <option value="2.5">2.5</option>
-        <option value="3">3</option>
-      </select>
-      <p>heures</p>
-    </div>
-    <div class="add-pace-option" data-action="click->quote#addPaceOption">
-      <i class="fa fa-plus-circle"></i>
-    </div>
-  </div>
+  <% else %>
+    <% @quote.sessions.values.each_with_index do |session, index| %>
+      <div class="pace-option" data-target="quote.pace">
+        <div class="sessions-input string optional quote_sessions_number_of_sessions" data-action="change->quote#computeHoursAndSessions">
+          <input class="form-control string optional" placeholder="20" type="text" name="quote[sessions][<%= index %>][number_of_sessions]" id="quote_sessions_<%= index %>_number_of_sessions" value="<%= session["number_of_sessions"] %>">
+          <p>sessions de</p>
+        </div>
+        <div class="duration-input select optional quote_sessions_hours_per_session" data-action="change->quote#computeHoursAndSessions">
+          <select class="form-control select optional" name="quote[sessions][<%= index %>][hours_per_session]" id="quote_sessions_<%= index %>_hours_per_session">
+            <% [1, 1.25, 1.5, 2, 2.5, 3].each do |option| %>
+              <option value="<%= option %>" <%= "selected" if session["hours_per_session"] == option.to_s %>><%= option %></option>
+            <% end %>
+          </select>
+          <p>heures</p>
+        </div>
+        <div class="add-pace-option" data-action="click->quote#addPaceOption">
+          <i class="fa fa-plus-circle"></i>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
 </div>
 
 

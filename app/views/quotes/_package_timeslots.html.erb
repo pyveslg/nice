@@ -1,13 +1,26 @@
-<div id="programme-timeslots">
-  <div class="timeslots-option" data-target="quote.time">
-    <div class="timing-selector start">
-      <p>À</p>
-      <input class="form-control string optional timepicker" data-action="change-> quote#computeTimeSlots" type="text" name="quote[hour_start_at[0]]" id="quote_hour_start_at_0">
+<div id="programme-timeslots" class="text optional quote_timeslots">
+  <% if @quote.timeslots.empty? %>
+    <div class="timeslots-option form-group" data-target="quote.time">
+      <div class="timing-selector start">
+        <p>À</p>
+        <input class="form-control text optional timepicker" type="text" name="quote[timeslots][]" id="quote_hour_start_at_0" data-action="change-> quote#generateCalendar" data-target="quote.timeslots">
+      </div>
+      <div class="add-pace-option" data-action="click->quote#addTimeOption">
+        <i class="fa fa-plus-circle"></i>
+      </div>
     </div>
-    <div class="add-pace-option" data-action="click->quote#addTimeOption">
-      <i class="fa fa-plus-circle"></i>
+  <% end %>
+  <% @quote.timeslots.each_with_index do |timeslot, index| %>
+    <div class="timeslots-option form-group" data-target="quote.time">
+      <div class="timing-selector start">
+        <p>À</p>
+        <input class="form-control text optional timepicker" type="text" name="quote[timeslots][]" id="quote_hour_start_at_<%= index %>" value="<%= timeslot %>" data-action="change-> quote#generateCalendar" data-target="quote.timeslots">
+      </div>
+      <div class="add-pace-option" data-action="click->quote#addTimeOption">
+        <i class="fa fa-plus-circle"></i>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 

@@ -24,16 +24,13 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.string :client_city
       t.string :company_name
       t.string :company_address
-      t.string :company_zipcode_string
+      t.string :company_zipcode
       t.string :company_siret
       t.string :company_city
       t.integer :hourly_rate
-      t.integer :payment_condition
       t.integer :installment
       t.string :level_target
       t.text :content
-      t.boolean :museum, default: false
-      t.boolean :access_to_neo, default: true
 
       t.timestamps
     end

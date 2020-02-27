@@ -14,7 +14,7 @@ import "flatpickr/dist/themes/airbnb.css";
 import 'select2';
 import 'select2/dist/css/select2.css';
 import { initAttendeesForm } from '../components/attendees';
-import { initDatePicker, initTimePicker } from '../components/datepicker';
+import { initDatePicker, initTimePicker, initDateTimePicker } from '../components/datepicker';
 
 
 
@@ -22,5 +22,6 @@ import { initDatePicker, initTimePicker } from '../components/datepicker';
 
 initDatePicker();
 initTimePicker();
+initDateTimePicker();
 global.initTimePicker = initTimePicker;
 initAttendeesForm();

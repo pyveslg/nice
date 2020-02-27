@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ['check', "hiddable", "pace", "hours", "frequency", "days", "time", "timeslots"]
+  static targets = ['check', "hiddable", "pace", "hours", "frequency", "days", "time", "timeslots", "schedules"]
   connect() {
 
   }
@@ -28,25 +28,25 @@ export default class extends Controller {
     const paceDiv = document.getElementById("programme-pace");
     const options = this.paceTargets.length;
     const option = `<div class="pace-option" data-target="quote.pace">
-                    <div class="sessions-input string optional quote_number_of_sessions" data-action="change->quote#computeHoursAndSessions">
-                      <input class="form-control string optional" placeholder="20" type="text" name="quote[number_of_sessions]" id="quote_number_of_sessions_${options}">
-                      <p>sessions de</p>
-                    </div>
-                    <div class="duration-input select optional quote_hours_by_sessions" data-action="change->quote#computeHoursAndSessions">
-                      <select class="form-control select optional" name="quote[hours_by_sessions]" id="quote_hours_by_sessions_${options}">
-                        <option value="1">1</option>
-                        <option value="1.25">1.25</option>
-                        <option selected="selected" value="1.5">1.5</option>
-                        <option value="2">2</option>
-                        <option value="2.5">2.5</option>
-                        <option value="3">3</option>
-                      </select>
-                      <p>heures</p>
-                    </div>
-                    <div class="add-pace-option" data-action="click->quote#removePaceOption">
-                      <i class="fa fa-minus-circle"></i>
-                    </div>
-                  </div>`;
+                      <div class="sessions-input string optional quote_sessions_number_of_sessions" data-action="change->quote#computeHoursAndSessions">
+                        <input class="form-control string optional" placeholder="20" type="text" name="quote[sessions][${options}][number_of_sessions]" id="quote_sessions_${options}_number_of_sessions">
+                        <p>sessions de</p>
+                      </div>
+                      <div class="duration-input select optional quote_sessions_hours_by_sessions" data-action="change->quote#computeHoursAndSessions">
+                        <select class="form-control select optional" name="quote[sessions][${options}][hours_per_session]" id="quote_sessions_${options}_hours_per_session">
+                          <option value="1">1</option>
+                          <option value="1.25">1.25</option>
+                          <option value="1.5" selected>1.5</option>
+                          <option value="2">2</option>
+                          <option value="2.5">2.5</option>
+                          <option value="3">3</option>
+                        </select>
+                        <p>heures</p>
+                      </div>
+                      <div class="add-pace-option" data-action="click->quote#addPaceOption">
+                        <i class="fa fa-plus-circle"></i>
+                      </div>
+                    </div>`;
     paceDiv.insertAdjacentHTML('afterbegin', option);
   }
 
@@ -81,9 +81,9 @@ export default class extends Controller {
     this.hoursTarget.innerText = hours;
 
     // Change value of quote.sessions in form
-    const sessionsInput = document.getElementById('quote_sessions');
-    const sessionsArray = this.paceTargets.map((option) => computeSessions(option));
-    sessionsInput.value = sessionsArray;
+    // const sessionsInput = document.getElementById('quote_sessions');
+    // const sessionsArray = this.paceTargets.map((option) => computeSessions(option));
+    // sessionsInput.value = sessionsArray;
 
     this.generateCalendar();
   }
@@ -121,15 +121,13 @@ export default class extends Controller {
   addTimeOption(){
     const timeslotDiv = document.getElementById("programme-timeslots");
     const options = this.timeTargets.length;
-    const option = `<div id="programme-timeslots">
-                      <div class="timeslots-option" data-target="quote.time">
-                        <div class="timing-selector start">
-                          <p>À</p>
-                          <input class="form-control string optional timepicker" data-action="change-> quote#computeTimeSlots" type="text" name="quote[hour_start_at[${options}]]" id="quote_hour_start_at_${options}">
-                        </div>
-                        <div class="add-pace-option" data-action="click->quote#removeTimeOption">
-                          <i class="fa fa-minus-circle"></i>
-                        </div>
+    const option = `<div class="timeslots-option form-group" data-target="quote.time">
+                      <div class="timing-selector start">
+                        <p>À</p>
+                        <input class="form-control text optional timepicker" data-action="change-> quote#generateCalendar" data-target="quote.timeslots" type="text" name="quote[timeslots][]" id="quote_hour_start_at_${options}">
+                      </div>
+                      <div class="add-pace-option" data-action="click->quote#removeTimeOption">
+                        <i class="fa fa-minus-circle"></i>
                       </div>
                     </div>`;
     timeslotDiv.insertAdjacentHTML('beforeend', option);
@@ -145,30 +143,12 @@ export default class extends Controller {
         time_24hr: true
       });
     });
-
   }
 
   removeTimeOption(){
     event.currentTarget.parentElement.remove();
     this.computeTimeSlots();
   }
-
-
-  computeTimeSlots(){
-    const computeTimeOption = (option) => {
-      const startValue = option.querySelector('.start input').value;
-      const timeslot = {};
-      timeslot["start_at"] = startValue;
-      return JSON.stringify(timeslot);
-    }
-    const timeslots = this.timeTargets.map((option) => option.querySelector('.start input').value);
-    this.timeslotsTarget.value = timeslots;
-
-    this.generateCalendar();
-  }
-
-
-
 
   generateCalendar(){
     const computeNumberOfSessions = (option) => {
@@ -177,7 +157,8 @@ export default class extends Controller {
     /// nombre de sessions dans le calendrier
     const numberOfSessions = this.paceTargets.map((option) => computeNumberOfSessions(option)).reduce((a,x) => a + x, 0);
     /// heures dispos
-    const timeSlots = this.timeslotsTarget.value.split(',');
+    const timeSlots = this.timeslotsTargets.map((time) => time.value);
+    console.log(timeSlots);
     const timeSlotsHours = timeSlots.map((time) => parseInt(time.split(':')[0]));
     /// Heure de démarrage du premier cours
     const firstTime = timeSlots[0].split(':');
@@ -276,14 +257,45 @@ export default class extends Controller {
     // console.log(nextDate(firstDate, period, timeSlotsHours, timeSlots, classes));
     const schedulesDiv = document.getElementById('quote-schedules');
     schedulesDiv.innerHTML = "";
-    schedulesDiv.insertAdjacentHTML('beforeend', `<li>${firstDate}</li>`);
-
+    schedulesDiv.insertAdjacentHTML('beforeend', `<div class="form-group schedule-option">
+                                      <label for="quote_0">Session#0</label>
+                                      <input data-target="quote.schedules" class="text optional datetimepicker" type="text" value="${firstDate.toISOString()}" name="quote[schedules][]" id="quote_0" >
+                                    </div>`);
+    const firstInput = document.getElementById('quote_0');
+    flatpickr(firstInput, {
+      locale: "fr",
+      altInput: true,
+      enableTime: true,
+      altFormat: "D F j, Y, H:i",
+      minTime: "07:00",
+      maxTime: "21:00",
+      time_24hr: true
+    });
     let previousDate = firstDate;
     for ( let i = 1; i < numberOfSessions; i++ ) {
       let followingDate = nextDate(previousDate, period, timeSlotsHours, timeSlots, classes);
-      schedulesDiv.insertAdjacentHTML('beforeend', `<li>${followingDate}</li>`);
+      let content = ` <div class="form-group schedule-option">
+                        <label for="quote_${i}">Session#${i + 1}</label>
+                        <input data-target="quote.schedules" class="text optional datetimepicker" type="text" value="${followingDate.toISOString()}" name="quote[schedules][]" id="quote_${i}" >
+                      </div>`;
+      schedulesDiv.insertAdjacentHTML('beforeend', content);
+      let input = document.getElementById(`quote_${i}`)
+      flatpickr(input, {
+        locale: "fr",
+        altInput: true,
+        altFormat: "D F j, Y, H:i",
+        enableTime: true,
+        minTime: "07:00",
+        maxTime: "21:00",
+        time_24hr: true
+      });
       previousDate = followingDate;
     }
+    // this.computeSchedules();
+  }
 
+  toggleSchedules() {
+    const schedulesDiv = document.getElementById('quote-schedules');
+    schedulesDiv.classList.toggle('hidden');
   }
 }

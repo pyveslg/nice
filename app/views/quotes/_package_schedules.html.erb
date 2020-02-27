@@ -1,0 +1,8 @@
+<div id="quote-schedules" class="<%= "hidden" if @quote.schedules.empty? %> text optional quote_schedules form-group-valid">
+  <% @quote.schedules.each_with_index do |schedule, index| %>
+    <div class="form-group schedule-option">
+      <label for="quote_<%= index %>">Session#<%= index + 1 %></label>
+      <input data-target="quote.schedules" class="text optional datetimepicker" type="text" value="<%= schedule %>" name="quote[schedules][]" id="quote_<%= index %>" >
+    </div>
+  <% end %>
+</div>

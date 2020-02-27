@@ -90,3 +90,58 @@
     padding-right: 1em;
   }
 }
+
+/// CALENDAR
+#quote-schedules {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.6em;
+}
+
+#quote_schedule_is_defined {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.quote_schedule_is_defined label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 80px;
+  height: 40px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  margin-bottom: 0px;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+}
+
+#quote_schedule_is_defined:checked + label {
+  background: #bada55;
+}
+
+#quote_schedule_is_defined:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.schedules-define {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -20px;
+  h6 {
+    padding-right: 1em;
+  }
+}
